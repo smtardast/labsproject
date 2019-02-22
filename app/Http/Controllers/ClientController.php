@@ -14,7 +14,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients=Client::all();
+        return view('clients.clients
+        ', compact('clients'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.clients-create');
     }
 
     /**
@@ -35,7 +37,15 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newclient=new Client;
+        $newclient->name=$request->name;
+        $newclient->job=$request->job;
+        $newclient->text=$request->text;
+        $newclient->image=$request->image->store('', 'client');
+        $newclient->save();
+        $clients=Client::all();
+        return view('clients.clients
+        ', compact('clients'));
     }
 
     /**
@@ -57,7 +67,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('clients.clients-edit', compact('client'));
     }
 
     /**
@@ -69,7 +79,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $client->name=$request->name;
+        $client->job=$request->job;
+        $client->text=$request->text;
+        $client->image=$request->image->store('','client');
+        $client->save();
+        $clients=Client::all();
+        return view('clients.clients
+        ', compact('clients'));
     }
 
     /**
@@ -80,6 +97,9 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        $clients=Client::all();
+        return view('clients.clients
+        ', compact('clients'));
     }
 }

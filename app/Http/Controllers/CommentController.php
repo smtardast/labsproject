@@ -14,7 +14,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments= Comment::all();
+        return view('comment.comment', compact('comments'));
     }
 
     /**
@@ -35,7 +36,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newcomment= new Comment;
+        $newcomment->name=$request->name;
+        $newcomment->title=$request->title;
+        $newcomment->text=$request->text;
+        $newcomment->email=$request->email;
+        $newcomment->save();
+        return redirect()->back();
+
     }
 
     /**
@@ -57,7 +65,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        
     }
 
     /**
@@ -68,8 +76,12 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Comment $comment)
-    {
-        //
+    {   
+        
+        $comment->validated='yes';
+        $comment->save();
+        return redirect()->back();
+
     }
 
     /**
@@ -80,6 +92,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return redirect()->back();
     }
 }

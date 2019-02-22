@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<form action="{{route('article.update')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('article.update', ['article'=>$article->id])}}" method="post" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="form-group">

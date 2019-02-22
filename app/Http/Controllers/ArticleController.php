@@ -75,7 +75,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $categories=Category::all();
+        $users=User::all();
+        return view('article.article-edit', compact('categories', 'users', 'article'));
     }
 
     /**
@@ -87,7 +89,18 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article->title=$request->title;
+        $article->image=$request->image->store('','article');
+        $article->text=$request->text;
+        $article->authortext=$request->authortext;
+        $article->category_id=$request->category_id;
+        $article->user_id=$request->user_id;
+        //$article->tag=$request->tag;
+        $article->save();
+        $articles=Article::all();
+        return view('article.article', compact('articles'));
+
+
     }
 
     /**
@@ -98,6 +111,9 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+      
+        $article->delete();
+       
+        return redirect()->back();
     }
 }

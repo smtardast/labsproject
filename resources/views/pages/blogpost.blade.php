@@ -1,4 +1,4 @@
-@include('layouts.app')
+@extends('layouts.app')
 
 @section('content')
     <!-- Header section -->
@@ -99,7 +99,8 @@
                             <div class="row">
                                 <div class="col-md-9 comment-from">
                                     <h2>Leave a comment</h2>
-                                    <form class="form-class">
+                                <form class="form-class" action="{{route('comment.store')}}" method="POST">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <input type="text" name="name" placeholder="Your name">
@@ -108,9 +109,9 @@
                                                 <input type="text" name="email" placeholder="Your email">
                                             </div>
                                             <div class="col-sm-12">
-                                                <input type="text" name="subject" placeholder="Subject">
-                                                <textarea name="message" placeholder="Message"></textarea>
-                                                <button class="site-btn">send</button>
+                                                <input type="text" name="title" placeholder="Subject">
+                                                <textarea name="text" placeholder="Message"></textarea>
+                                                <button type="submit" class="site-btn">send</button>
                                             </div>
                                         </div>
                                     </form>
@@ -185,6 +186,6 @@
         </div>
         <!-- page section end-->
     
-        @include('components.newsletter')
+        @extends('components.newsletter')
         
 @endsection

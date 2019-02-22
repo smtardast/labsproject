@@ -54,3 +54,11 @@ Route::resource('/article', 'ArticleController');
 //Category
 
 Route::resource('/category', 'CategoryController');
+
+//Clients
+
+Route::resource('/client','ClientController');
+
+//Comments
+
+Route::resource('/comment', 'CommentController');

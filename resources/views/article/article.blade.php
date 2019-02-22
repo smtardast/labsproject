@@ -16,7 +16,16 @@
     <p>{{$item->category->category}}</p>
     {{-- <p>{{$item->tag->tag}}</p> --}}
 
-<a name="" id="" class="btn btn-secondary" href="{{}}" role="button">Edit</a>
-    <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
+<a name="" id="" class="btn btn-secondary" href="{{route('article.edit', ['article'=>$item->id])}}" role="button">Edit</a>
+
+<form action="{{route('article.destroy', ['article'=>$item->id])}}" method="POST">
+    @method('DELETE')
+    @csrf
+    
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+</form>
+
     @endforeach
 @stop
