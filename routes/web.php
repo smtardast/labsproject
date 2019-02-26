@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', 'HomepageController@index')->name('home');
 
 Auth::routes();
 
@@ -32,9 +30,7 @@ Route::get('/contact',function () {
     return view('pages.contact');
 })->name('contact');
 
-Route::get('/services',function () {
-    return view('pages.services');
-})->name('services');
+Route::get('/services','ServicepageController@index')->name('services');
 
 
 

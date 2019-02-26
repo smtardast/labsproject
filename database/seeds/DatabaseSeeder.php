@@ -26,6 +26,18 @@ class DatabaseSeeder extends Seeder
          $this->call(NewslettersTableSeeder::class);
         $this->call(ArticlesTagsTableSeeder::class);
         $this->call(ContactsTableSeeder::class);
+        $this->call(HomepagesTableSeeder::class);
+        $this->call(ContactpagesTableSeeder::class);
+        $this->call(BlogpagesTableSeeder::class);
+        $this->call(BlogpostpagesTableSeeder::class);
+        $this->call(ServicepagesTableSeeder::class);
+        $this->call(ContactcomponentsTableSeeder::class);
+    
+
+
+
+
+
 
 
 
