@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use App\Icon;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -14,7 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+        return view('service.service',compact('services'));
     }
 
     /**
@@ -23,8 +25,9 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $icons=Icon::all();
+        return view('service.service-create', compact('icons'));
     }
 
     /**
@@ -35,7 +38,13 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newservice= new Service;
+        $newservice->title=$request->title;
+        $newservice->text=$request->text;
+        $newservice->icon_id=$request->icon_id;
+        $newservice->save();
+        $services = Service::all();
+        return view('service.service',compact('services'));
     }
 
     /**
@@ -57,7 +66,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('service.service-edit', compact('service'));
     }
 
     /**
@@ -69,7 +78,15 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $service->title=$request->title;
+        $service->text=$request->text;
+       // $service->=$request->;
+       $service->save();
+       $services = Service::all();
+        return view('service.service',compact('services'));
+
+
+
     }
 
     /**
@@ -80,6 +97,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return redirect()->back();
     }
 }

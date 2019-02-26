@@ -37,7 +37,7 @@ Route::get('/services',function () {
 })->name('services');
 
 
-//BACKEND
+
 
 //Users
 
@@ -50,7 +50,7 @@ Route::resource('/profile', 'ProfileController');
 //Article
 
 Route::resource('/article', 'ArticleController');
-
+Route::put('/article/{article}/validate', 'ArticleController@validationArticle')->name('validate.article');
 //Category
 
 Route::resource('/category', 'CategoryController');
@@ -62,3 +62,25 @@ Route::resource('/client','ClientController');
 //Comments
 
 Route::resource('/comment', 'CommentController');
+
+//Services
+
+Route::resource('/service', 'ServiceController');
+
+//Projects
+
+Route::resource('/project', 'ProjectController');
+
+//Carousel
+
+Route::resource('/carousel', 'CarouselController');
+
+//Newsletter
+
+Route::resource('/newsletter', 'NewsletterController');
+
+//Contact
+
+Route::resource('/question/contact', 'ContactController');
+
+

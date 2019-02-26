@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Icon;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -14,7 +15,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects=Project::all();
+        $icons=Icon::all();
+        return view('project.project', compact('projects', 'icons'));
     }
 
     /**
@@ -24,7 +27,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $icons=Icon::all();
+        return view('project.project-create', compact('icons'));
     }
 
     /**
@@ -35,7 +39,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newproject= new Project;
+        $newproject->title=$request->title;
+        $newproject->text=$request->text;
+        $newproject->icon_id=$request->icon_id;
+        $newproject->image=$request->image->store('','project');
+        $newproject->save();
+        $projects=Project::all();
+        $icons=Icon::all();
+        return view('project.project', compact('projects', 'icons'));
+
+
     }
 
     /**
@@ -57,7 +71,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $icons=Icon::all();
+        return view('project.project-edit', compact('icons','project'));
     }
 
     /**
@@ -69,7 +84,15 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $project->title=$request->title;
+        $project->text=$request->text;
+        $project->icon_id=$request->icon_id;
+        $project->image=$request->image->store('','project');
+        $project->save();
+        $projects=Project::all();
+        $icons=Icon::all();
+        return view('project.project', compact('projects', 'icons'));
+
     }
 
     /**
@@ -80,6 +103,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        $projects=Project::all();
+        $icons=Icon::all();
+        return view('project.project', compact('projects', 'icons'));
+
     }
 }

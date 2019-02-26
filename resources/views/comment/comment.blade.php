@@ -18,11 +18,11 @@
 <form action="{{route('comment.update',['comment'=>$item->id])}}" method="post">
         @method('PUT')
         @csrf
-    <select name="{{$item->validated}}" id="">
+    {{-- <select name="{{$item->validated}}" id="">
     <option value="null">Not validated</option>
     <option value="yes">Validated</option>
     
-        </select>
+        </select> --}}
         <button type="submit">Validate</button>
     </form>
 @endif

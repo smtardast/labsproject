@@ -15,6 +15,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{asset('css/flaticon.css')}}"/>
 
     @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->

@@ -46,7 +46,6 @@ class UserController extends Controller
         $newuser->password=$request->password;
         $newuser->role_id=$request->role_id; 
         $newuser->save();
-        dd($request->image);
         $newprofile->user_id=$newuser->id;
         $newprofile->job=$request->job;
         $newprofile->image=$request->image->store('','profile');

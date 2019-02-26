@@ -116,4 +116,12 @@ class ArticleController extends Controller
        
         return redirect()->back();
     }
+
+    public function validationArticle( Request $request, Article $article){
+        
+        $article->validated="yes";
+        $article->save();
+        return redirect()->back();
+
+    }
 }

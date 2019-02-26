@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Newsletter;
 use Illuminate\Http\Request;
-
+use App\Events\NewsletterEvent;
 class NewsletterController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        $newsletters= Newsletter::all();
+        return view('newsletter.newsletter', compact('newsletters'));
     }
 
     /**
@@ -35,7 +36,11 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newnewsletter= new Newsletter;
+        $newnewsletter->email=$request->email;
+        $newnewsletter->save();
+        event(new NewsletterEvent($request));
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +85,7 @@ class NewsletterController extends Controller
      */
     public function destroy(Newsletter $newsletter)
     {
-        //
+        $newsletter->delete();
+        return redirect()->back();
     }
 }

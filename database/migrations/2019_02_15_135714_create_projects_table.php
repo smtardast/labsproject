@@ -16,9 +16,10 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image')->nullable();
-            $table->string('icon')->nullable();
             $table->string('title')->nullable();
             $table->text('text')->nullable();
+            $table->unsignedInteger('icon_id')->nullable();
+            $table->foreign('icon_id')->references('id')->on('icons');
             $table->timestamps();
         });
     }
