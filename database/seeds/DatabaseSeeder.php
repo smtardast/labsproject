@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BlogpostpagesTableSeeder::class);
         $this->call(ServicepagesTableSeeder::class);
         $this->call(ContactcomponentsTableSeeder::class);
+        $this->call(InstagramsTableSeeder::class);
     
 
 

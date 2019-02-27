@@ -9,6 +9,8 @@ use App\Article;
 use Illuminate\Http\Request;
 use Storage;
 use Carbon\Carbon;
+use App\Tag;
+
 class ArticleController extends Controller
 {
     /**
@@ -54,6 +56,8 @@ class ArticleController extends Controller
 
         //$newarticle->tag=$request->tag;
         $newarticle->save();
+        $tag= Tag::find($request->tag_id);
+        $new->tags()->attach($tag);
         $articles=Article::all();
         return view('article.article', compact('articles'));
 
@@ -102,6 +106,8 @@ class ArticleController extends Controller
         $article->user_id=$request->user_id;
         //$article->tag=$request->tag;
         $article->save();
+        $tag= Tag::find($request->tag_id);
+        $new->tags()->attach($tag);
         $articles=Article::all();
         return view('article.article', compact('articles'));
 

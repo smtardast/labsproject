@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Blogpage;
 use App\Category;
+use App\Instagram;
 use Illuminate\Http\Request;
 
 class BlogpageController extends Controller
@@ -16,8 +17,9 @@ class BlogpageController extends Controller
      */
     public function index()
     {   $categories=Category::all();
+        $instagrams=Instagram::all();
         $blogpages=Article::all();
-        return view('pages.blog', compact('blogpages', 'categories'));
+        return view('pages.blog', compact('blogpages', 'categories', 'instagrams'));
     }
 
     /**
@@ -49,7 +51,8 @@ class BlogpageController extends Controller
      */
     public function show(Article $blogpage)
     {   $categories=Category::all();
-        return view('pages.blogpost', compact('blogpage', 'categories'));
+        $instagrams=Instagram::all();
+        return view('pages.blogpost', compact('blogpage', 'categories', 'instagrams'));
     }
 
     /**
