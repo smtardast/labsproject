@@ -6,7 +6,7 @@ use App\Servicepage;
 use Illuminate\Http\Request;
 use App\Service;
 use App\Project;
-
+use App\Contactcomponent;
 
 class ServicepageController extends Controller
 {
@@ -16,14 +16,16 @@ class ServicepageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {   
+        $contentsC= Contactcomponent::all()->first();
         $contents = Servicepage::all()->first();
         $services = Service::InRandomOrder()->take(9)->get();
         $projects = Project::all()->sortByDesc('id')->take(3);
         $projects2 = Project::all()->sortByDesc('id')->take(6)->take(-3);
-        
-        return view('pages.services', compact ('contents','services','projects','projects2'));
+
+
+
+        return view('pages.services', compact ('contents','services','projects','projects2', 'contentsC'));
         
     }
 
@@ -67,7 +69,9 @@ class ServicepageController extends Controller
      */
     public function edit(Servicepage $servicepage)
     {
-        //
+        $servicepage=Servicepage::all()->first();
+        return view('contents.servicecontent', compact('servicepage'));
+
     }
 
     /**
@@ -79,7 +83,10 @@ class ServicepageController extends Controller
      */
     public function update(Request $request, Servicepage $servicepage)
     {
-        //
+        $servicepage->servicetitle=$request->servicetitle;
+        $servicepage->projectstitle=$request->projectstitle;
+        $servicepage->save();
+        return redirect()->back();
     }
 
     /**

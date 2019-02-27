@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Servicepage;
 use Illuminate\Http\Request;
+use App\Service;
+use App\Project;
+use App\Homepage;
+use App\Contactcomponent;
 
 class HomeController extends Controller
 {
@@ -22,7 +28,12 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {  
+        $services = Service::InRandomOrder()->take(9)->get();
+        $contents = Servicepage::all()->first();
+        $projects = Project::InRandomOrder()->take(3)->get();
+        $contentsH= Homepage::all()->first();
+        $contentsC= Contactcomponent::all()->first();
+        return view('pages.home', compact('contents','contentsH','contentsC', 'services', 'projects'));
     }
 }

@@ -11,24 +11,18 @@
 |
 */
 
-Route::get('/', 'HomepageController@index')->name('home');
+
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 //FRONTEND
-Route::get('/blog',function () {
-    return view('pages.blog');
-})->name('blog');
+Route::resource('/blogpage','BlogpageController');
 
-Route::get('/blogpost',function () {
-    return view('pages.blogpost');
-})->name('blogpost');
+// Route::get('/blogpost/{blogpage}','BlogpageController@show')->name('blogpost');
 
-Route::get('/contact',function () {
-    return view('pages.contact');
-})->name('contact');
+Route::get('/contact', 'ContactpageController@index')->name('contact');
 
 Route::get('/services','ServicepageController@index')->name('services');
 
@@ -78,5 +72,10 @@ Route::resource('/newsletter', 'NewsletterController');
 //Contact
 
 Route::resource('/question/contact', 'ContactController');
+
+//edit content
+Route::resource('/homecontent', 'HomepageController');
+Route::resource('/contactcomponent', 'ContactcomponentController');
+Route::resource('/servicepage', 'ServicepageController');
 
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Contactcomponent;
+use App\Instagram;
 use Illuminate\Http\Request;
 
-class ContactcomponentController extends Controller
+class InstagramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ContactcomponentController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class ContactcomponentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Contactcomponent  $contactcomponent
+     * @param  \App\Instagram  $instagram
      * @return \Illuminate\Http\Response
      */
-    public function show(Contactcomponent $contactcomponent)
+    public function show(Instagram $instagram)
     {
         //
     }
@@ -52,39 +52,33 @@ class ContactcomponentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Contactcomponent  $contactcomponent
+     * @param  \App\Instagram  $instagram
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contactcomponent $contactcomponent)
+    public function edit(Instagram $instagram)
     {
-        $contactcomponent=Contactcomponent::all()->first();
-        return view('contents.contactcontent', compact('contactcomponent'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contactcomponent  $contactcomponent
+     * @param  \App\Instagram  $instagram
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contactcomponent $contactcomponent)
+    public function update(Request $request, Instagram $instagram)
     {
-       $contactcomponent->title=$request->title;
-       $contactcomponent->description=$request->description; 
-       $contactcomponent->address=$request->address; 
-       $contactcomponent->office=$request->office; 
-       $contactcomponent->save(); 
-        return redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Contactcomponent  $contactcomponent
+     * @param  \App\Instagram  $instagram
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contactcomponent $contactcomponent)
+    public function destroy(Instagram $instagram)
     {
         //
     }

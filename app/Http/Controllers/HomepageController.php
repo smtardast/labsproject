@@ -16,10 +16,7 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        $contents = Servicepage::all()->first();
-        $contentsH= Homepage::all()->first();
-        $contentsC= Contactcomponent::all()->first();
-        return view('pages.home', compact('contents','contentsH','contentsC'));
+        
     }
 
     /**
@@ -40,7 +37,7 @@ class HomepageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -51,7 +48,7 @@ class HomepageController extends Controller
      */
     public function show(Homepage $homepage)
     {
-        //
+       
     }
 
     /**
@@ -62,7 +59,8 @@ class HomepageController extends Controller
      */
     public function edit(Homepage $homepage)
     {
-        //
+        $homecontent= Homepage::all()->first();
+        return view('contents.homecontent', compact('homecontent'));
     }
 
     /**
@@ -73,8 +71,19 @@ class HomepageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Homepage $homepage)
-    {
-        //
+    {   
+        $homepage->subtitle=$request->subtitle;
+        $homepage->descriptiontitle=$request->descriptiontitle;
+        $homepage->description=$request->description;
+        $homepage->description2=$request->description2;
+        $homepage->clienttitle=$request->clienttitle;
+        $homepage->servicetitle=$request->servicetitle;
+        $homepage->teamtitle=$request->teamtitle;
+        $homepage->browsetitle=$request->browsetitle;
+        $homepage->browsesubtitle=$request->browsesubtitle;
+        $homepage->save();
+        return redirect()->back();
+         
     }
 
     /**

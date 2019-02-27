@@ -46,14 +46,14 @@
       </select>
     </div>
   
-    <div class="form-group">
+    {{-- <div class="form-group">
       <label for="">Author</label>
       <select class="form-control" name="user_id" id="">
         @foreach ($users as $item)
       <option value="{{$item->id}}">{{$item->name}}</option>
         @endforeach
       </select>
-    </div>
+    </div> --}}
 
   
     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>

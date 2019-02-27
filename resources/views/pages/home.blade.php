@@ -11,8 +11,8 @@
 		<nav>
 			<ul class="menu-list">
 				<li class="active"><a href="{{route('home')}}">Home</a></li>
-				<li><a href="{{route('services')}}">Services</a></li>
-				<li><a href="{{route('blog')}}">Blog</a></li>
+				<li><a href="{{route('servicepage.index')}}">Services</a></li>
+				<li><a href="{{route('blogpage.index ')}}">Blog</a></li>
 				<li><a href="{{route('contact')}}">Contact</a></li>
                 <li><a href="{{ route('login') }}">Login</a></li>
 			</ul>
@@ -44,36 +44,20 @@
 		<div class="card-section">
 			<div class="container">
 				<div class="row">
+					@foreach ($projects as $item)
+						
 					<!-- single card -->
 					<div class="col-md-4 col-sm-6">
 						<div class="lab-card">
 							<div class="icon">
-								<i class="flaticon-023-flask"></i>
+							<i class="{{$item->icon->code}}"></i>
 							</div>
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+							<h2>{{$item->title}}</h2>
+							<p>{{$item->text}}</p>
 						</div>
 					</div>
-					<!-- single card -->
-					<div class="col-md-4 col-sm-6">
-						<div class="lab-card">
-							<div class="icon">
-								<i class="flaticon-011-compass"></i>
-							</div>
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-					<!-- single card -->
-					<div class="col-md-4 col-sm-12">
-						<div class="lab-card">
-							<div class="icon">
-								<i class="flaticon-037-idea"></i>
-							</div>
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
+					@endforeach
+					
 				</div>
 			</div>
 		</div>

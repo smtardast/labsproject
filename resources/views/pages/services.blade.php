@@ -11,8 +11,8 @@
 		<nav>
 			<ul class="menu-list">
 				<li><a href="{{route('home')}}">Home</a></li>
-				<li  class="active"><a href="{{route('services')}}">Services</a></li>
-				<li><a href="{{route('blog')}}">Blog</a></li>
+				<li  class="active"><a href="{{route('servicepage.index')}}">Services</a></li>
+				<li><a href="{{route('blogpage.index')}}">Blog</a></li>
 				<li><a href="{{route('contact')}}">Contact</a></li>
                 <li><a href="{{ route('login') }}">Login</a></li>
 			</ul>
@@ -47,75 +47,46 @@
 					<h2>{{$contents->projectstitle}}</h2>
 			</div>
 			<div class="row">
-				<!-- feature item -->
+				
+					<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">
-					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
+						@foreach ($projects as $item)
+						<div class="icon-box light left">
+							<div class="service-text">
+							<h2>{{$item->title}}</h2>
+								<p>{{$item->text}}</p>
+							</div>
+							<div class="icon">
+								<i class="{{$item->icon->code}}"></i>
+							</div>
 						</div>
-						<div class="icon">
-							<i class="flaticon-002-caliper"></i>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-						<div class="icon">
-							<i class="flaticon-019-coffee-cup"></i>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-						<div class="icon">
-							<i class="flaticon-020-creativity"></i>
-						</div>
-					</div>
+						@endforeach
 				</div>
+				
+				
+				
 				<!-- Devices -->
 				<div class="col-md-4 col-sm-4 devices">
 					<div class="text-center">
 						<img src="img/device.png" alt="">
 					</div>
 				</div>
-				<!-- feature item -->
+				
+					<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">
-					<div class="icon-box light">
-						<div class="icon">
-							<i class="flaticon-037-idea"></i>
+						@foreach ($projects2 as $item)
+						<div class="icon-box light left">
+							<div class="icon">
+								<i class="{{$item->icon->code}}"></i>
+							</div>
+							<div class="service-text">
+							<h2>{{$item->title}}</h2>
+								<p>{{$item->text}}</p>
+							</div>
 						</div>
-						<div class="service-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light">
-						<div class="icon">
-							<i class="flaticon-025-imagination"></i>
-						</div>
-						<div class="service-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light">
-						<div class="icon">
-							<i class="flaticon-008-team"></i>
-						</div>
-						<div class="service-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-					</div>
+						@endforeach
+				</div>
+				
 				</div>
 			</div>
 			<div class="text-center mt100">
@@ -130,42 +101,21 @@
 	<div class="services-card-section spad">
 		<div class="container">
 			<div class="row">
-				<!-- Single Card -->
+				@foreach ($projects as $item)
+					<!-- Single Card -->
 				<div class="col-md-4 col-sm-6">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-1.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-6">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-2.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+						<div class="sv-card">
+							<div class="card-img">
+							<img src="{{Storage::disk('project')->url($item->image)}}" alt="">
+							</div>
+							<div class="card-text">
+								<h2>{{$item->title}}</h2>
+								<p>{{$item->text}}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-12">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-3.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
+				@endforeach
+				
 			</div>
 		</div>
 	</div>

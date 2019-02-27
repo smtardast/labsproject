@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Blogpage;
+use App\Category;
 use Illuminate\Http\Request;
 
 class BlogpageController extends Controller
@@ -13,8 +15,9 @@ class BlogpageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   $categories=Category::all();
+        $blogpages=Article::all();
+        return view('pages.blog', compact('blogpages', 'categories'));
     }
 
     /**
@@ -44,9 +47,9 @@ class BlogpageController extends Controller
      * @param  \App\Blogpage  $blogpage
      * @return \Illuminate\Http\Response
      */
-    public function show(Blogpage $blogpage)
-    {
-        //
+    public function show(Article $blogpage)
+    {   $categories=Category::all();
+        return view('pages.blogpost', compact('blogpage', 'categories'));
     }
 
     /**

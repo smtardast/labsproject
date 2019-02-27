@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contactpage;
+use App\Contactcomponent;
 use Illuminate\Http\Request;
 
 class ContactpageController extends Controller
@@ -14,7 +15,8 @@ class ContactpageController extends Controller
      */
     public function index()
     {
-        //
+        $contentsC= Contactcomponent::all()->first();
+        return view('pages.contact', compact('contentsC'));
     }
 
     /**

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Category;
 use App\Article;
 use Illuminate\Http\Request;
 use Storage;
+use Carbon\Carbon;
 class ArticleController extends Controller
 {
     /**
@@ -46,7 +48,10 @@ class ArticleController extends Controller
         $newarticle->text=$request->text;
         $newarticle->authortext=$request->authortext;
         $newarticle->category_id=$request->category_id;
-        $newarticle->user_id=$request->user_id;
+        $newarticle->user_id=Auth::User()->id;
+        $newarticle->day=Carbon::now()->format('d');
+        $newarticle->month=Carbon::now()->format('M Y');
+
         //$newarticle->tag=$request->tag;
         $newarticle->save();
         $articles=Article::all();

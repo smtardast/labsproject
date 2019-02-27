@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Icon;
 use Illuminate\Http\Request;
+use Storage;
+use Image;
 
 class ProjectController extends Controller
 {
@@ -44,6 +46,9 @@ class ProjectController extends Controller
         $newproject->text=$request->text;
         $newproject->icon_id=$request->icon_id;
         $newproject->image=$request->image->store('','project');
+        $path=Storage::disk('project')->path($newproject->image);
+        $img=Image::make($path)->resize(360, 260);
+        $img->save(); 
         $newproject->save();
         $projects=Project::all();
         $icons=Icon::all();

@@ -20,7 +20,8 @@ class CreateArticlesTable extends Migration
             $table->text('text');
             $table->text('authortext');
             $table->string('validated')->nullable();
-            
+            $table->string('day');
+            $table->string('month');
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedInteger('user_id');
