@@ -24,6 +24,7 @@ class CreateHomepagesTable extends Migration
             $table->string('teamtitle');
             $table->string('browsetitle');
             $table->text('browsesubtitle');
+            $table->string('video');
             $table->timestamps();
         });
     }

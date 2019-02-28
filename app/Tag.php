@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    public function article(){
-        return $this->belomgsToMany('App\Article', 'articles_tags', 'article_id', 'tag_id');
+    public function articles(){
+        return $this->belomgsToMany('App\Article', 'article_tags', 'article_id', 'tag_id');
+
     }
 }

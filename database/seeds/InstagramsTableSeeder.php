@@ -12,6 +12,6 @@ class InstagramsTableSeeder extends Seeder
      */
     public function run()
     {
-        $instagram=factory(App\Instagram::class, 9) -> create();
+        $instagram=factory(App\Instagram::class, 6) -> create();
     }
 }

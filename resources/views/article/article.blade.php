@@ -15,7 +15,9 @@
     <p>{{$item->user->name}}</p>
     <p>{{$item->category->category}}</p>
     {{-- <p>{{$item->tag->tag}}</p> --}}
-
+    @foreach ($item->tags as $item)
+<p>{{$item->name}}</p>
+    @endforeach
     @if ($item->validated==null)
 <form action="{{route('validate.article',['article'=>$item->id])}}" method="post">
         @method('PUT')

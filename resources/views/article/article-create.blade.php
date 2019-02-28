@@ -44,6 +44,18 @@
       </select>
     </div>
   
+    <div class="form-check form-check-inline">
+        @foreach ($tags as $item)
+        <input type="checkbox" class="form-check-input" name="tag_id[]" id="" value="{{$item->id}}" >
+    <label class="form-check-label" for="inlineCheckbox1">{{$item->tag}}</label>
+     
+        @endforeach  
+      </div>
+
+        
+      <button type="submit">Submit</button>
+         
+      </div>
     {{-- <div class="form-group">
       <label for="">Author</label>
       <select class="form-control" name="user_id" id="">
@@ -59,7 +71,6 @@
       CKEDITOR.replace( 'summary-ckeditor' );
     </script>
 
-    <button type="submit">Submit</button>
 
 
 </form>

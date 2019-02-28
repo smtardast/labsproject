@@ -20,7 +20,8 @@ class HomepagesTableSeeder extends Seeder
             'servicetitle'=>'GET IN THE LAB AND SEE THE SERVICES',
             'teamtitle'=>'GET IN THE LAB AND MEET THE TEAM',
             'browsetitle'=>'Are you ready to stand out?',
-            'browsesubtitle'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est.            '
+            'browsesubtitle'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est.            ',
+            'video'=>'https://www.youtube.com/watch?v=ascPO9HhkiY&list=UUkOVK-tMYtEITJkzsnm-uUg&index=5'
             
         ]);
     }

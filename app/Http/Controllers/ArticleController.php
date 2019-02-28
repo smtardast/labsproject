@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Storage;
 use Carbon\Carbon;
 use App\Tag;
+use App\ArticleTag;
 
 class ArticleController extends Controller
 {
@@ -19,9 +20,9 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {  
         $articles=Article::all();
-        return view('article.article', compact('articles'));
+        return view('article.article', compact('articles' ));
     }
 
     /**
@@ -30,9 +31,12 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $categories=Category::all();
+
+    {   
+        $tags=Tag::all();
+        $categories=Category::all();
         $users=User::all();
-        return view('article.article-create', compact('categories', 'users'));
+        return view('article.article-create', compact('categories', 'users', 'tags'));
     }
 
     /**
@@ -43,7 +47,6 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        
         $newarticle= new Article;
         $newarticle->title=$request->title;
         $newarticle->image=$request->image->store('','article');
@@ -53,11 +56,11 @@ class ArticleController extends Controller
         $newarticle->user_id=Auth::User()->id;
         $newarticle->day=Carbon::now()->format('d');
         $newarticle->month=Carbon::now()->format('M Y');
-
+        
         //$newarticle->tag=$request->tag;
         $newarticle->save();
         $tag= Tag::find($request->tag_id);
-        $new->tags()->attach($tag);
+        $newarticle->tags()->attach($tag);
         $articles=Article::all();
         return view('article.article', compact('articles'));
 
@@ -84,9 +87,10 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        $tags=Tag::all();
         $categories=Category::all();
         $users=User::all();
-        return view('article.article-edit', compact('categories', 'users', 'article'));
+        return view('article.article-edit', compact('categories', 'users', 'article', 'tags'));
     }
 
     /**
@@ -106,8 +110,10 @@ class ArticleController extends Controller
         $article->user_id=$request->user_id;
         //$article->tag=$request->tag;
         $article->save();
+        $tag=Tag::all();
+        $article->tags()->detach($tag);
         $tag= Tag::find($request->tag_id);
-        $new->tags()->attach($tag);
+        $article->tags()->attach($tag);
         $articles=Article::all();
         return view('article.article', compact('articles'));
 
