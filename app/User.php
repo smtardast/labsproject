@@ -48,4 +48,9 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne('App\Profile', 'user_id', 'id');
     }
+
+    public function scopeTeam($query)
+    {
+        return $query->where('role_id', '=', 2);
+    }
 }

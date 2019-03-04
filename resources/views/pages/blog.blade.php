@@ -57,7 +57,7 @@
                                     <div class="post-meta">
                                         <a href="">{{$item->user->name}}</a>
                                         <a href="">{{$item->category->category}}</a>
-                                        <a href="">2 Comments</a>
+                                        <a href="">{{count($item->comments->where('verified', 'yes'))}} Comments</a>
                                     </div>
                                 <p>{!! str_limit($item->text, 330) !!}</p>
                                 <a href="{{route('blogpage.show',['blogpage'=>$item->id])}}" class="read-more">Read More</a>
@@ -66,12 +66,10 @@
                            @endif
                         @endforeach
                         
-                        <!-- Pagination -->
                         <div class="page-pagination">
-                            <a class="active" href="">01.</a>
-                            <a href="">02.</a>
-                            <a href="">03.</a>
+                            {{$blogpages->links()}}
                         </div>
+                      
                     </div>
                     @include('components.sidebar')
                 </div>

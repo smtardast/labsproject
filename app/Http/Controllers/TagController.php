@@ -14,7 +14,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags= Tag::all();
+        return view('article.tag', compact('tags'));
     }
 
     /**
@@ -34,8 +35,12 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $newtag= new Tag;
+        $newtag->tag=$request->tag;
+        $newtag->save();
+        return redirect()->back();
+
     }
 
     /**
@@ -57,7 +62,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('article.tag-edit', compact('tag'));
     }
 
     /**
@@ -69,7 +74,10 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $tag->tag=$request->tag;
+        $tag->save();
+        $tags=Tag::all();
+        return view('article.tag', compact('tags'));
     }
 
     /**
@@ -80,6 +88,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+         $tag->delete();
+        return redirect()->back();
     }
 }

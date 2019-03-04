@@ -41,6 +41,17 @@ Route::resource('/profile', 'ProfileController');
 
 Route::resource('/article', 'ArticleController');
 Route::put('/article/{article}/validate', 'ArticleController@validationArticle')->name('validate.article');
+
+//Article filters
+
+Route::get('/blogpage/category/{blogpage}','BlogpageController@categoryFilter')->name('filterCategories');
+
+Route::get('/blogpage/tag/{blogpage}','BlogpageController@tagFilter')->name('filterTags');
+
+Route::post('/blogpage/search','BlogpageController@search')->name('search');
+
+
+
 //Category
 
 Route::resource('/category', 'CategoryController');
@@ -79,3 +90,6 @@ Route::resource('/contactcomponent', 'ContactcomponentController');
 Route::resource('/servicepage', 'ServicepageController');
 
 
+//tags
+
+Route::resource('/tag', 'TagController');

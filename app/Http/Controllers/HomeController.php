@@ -9,6 +9,8 @@ use App\Service;
 use App\Project;
 use App\Homepage;
 use App\Contactcomponent;
+use App\User;
+use App\Client;
 
 class HomeController extends Controller
 {
@@ -29,11 +31,13 @@ class HomeController extends Controller
      */
     public function index()
     {  
+        $teams = User::team()->paginate(3);
+        $clients=Client::paginate(3);
         $services = Service::InRandomOrder()->take(9)->get();
         $contents = Servicepage::all()->first();
         $projects = Project::InRandomOrder()->take(3)->get();
         $contentsH= Homepage::all()->first();
         $contentsC= Contactcomponent::all()->first();
-        return view('pages.home', compact('contents','contentsH','contentsC', 'services', 'projects'));
+        return view('pages.home', compact('contents','contentsH','contentsC', 'services', 'projects', 'teams', 'clients'));
     }
 }

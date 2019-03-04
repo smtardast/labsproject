@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
+use App\Article;
+use Carbon\Carbon;
 
 class CommentController extends Controller
 {
@@ -41,6 +43,8 @@ class CommentController extends Controller
         $newcomment->title=$request->title;
         $newcomment->text=$request->text;
         $newcomment->email=$request->email;
+        $newcomment->article_id=$request->article_id;
+        $newcomment->day=Carbon::now()->format('d M Y');
         $newcomment->save();
         return redirect()->back();
 

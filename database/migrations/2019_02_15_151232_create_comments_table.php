@@ -17,12 +17,12 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('title');
-           
+            $table->string('day');
             $table->text('text');
             $table->string('email')->unique();
             $table->string('validated')->nullable();
-            // $table->unsignedInteger('article_id');
-            // $table->foreign('article_id')->references('id')->on('articles');
+            $table->unsignedInteger('article_id');
+            $table->foreign('article_id')->references('id')->on('articles');
             $table->timestamps();
         });
     }

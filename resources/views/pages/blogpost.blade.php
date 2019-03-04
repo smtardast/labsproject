@@ -57,7 +57,7 @@
                                     <a href="">{{$blogpage->category->category}}</a>
                                     <a href="">2 Comments</a>
                                 </div>
-                                <p>{{$blogpage->text}}</p>
+                                <p>{!!$blogpage->text!!}</p>
                             </div>
                             <!-- Post Author -->
                             <div class="author">
@@ -71,33 +71,27 @@
                             </div>
                             <!-- Post Comments -->
                             <div class="comments">
-                                <h2>Comments (2)</h2>
+                            <h2>Comments {{$count}}</h2>
                                 <ul class="comment-list">
-                                    <li>
+                                   @foreach ($comments as $item)
+                                   <li>
                                         <div class="avatar">
                                             <img src="img/avatar/01.jpg" alt="">
                                         </div>
                                         <div class="commetn-text">
-                                            <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-                                            <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
+                                        <h3>{{$item->name}}| {{$item->day}} | Reply</h3>
+                                            <p>{{$item->text}}</p>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="avatar">
-                                            <img src="img/avatar/02.jpg" alt="">
-                                        </div>
-                                        <div class="commetn-text">
-                                            <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-                                            <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
-                                        </div>
-                                    </li>
+                                   @endforeach
+                                   
                                 </ul>
                             </div>
                             <!-- Commert Form -->
                             <div class="row">
                                 <div class="col-md-9 comment-from">
                                     <h2>Leave a comment</h2>
-                                <form class="form-class" action="{{route('comment.store')}}" method="POST">
+                                <form class="form-class" action="{{route('comment.store',['blogpage'=>$blogpage->id])}}" method="POST">
                                         @csrf
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -109,8 +103,11 @@
                                             <div class="col-sm-12">
                                                 <input type="text" name="title" placeholder="Subject">
                                                 <textarea name="text" placeholder="Message"></textarea>
+
+                                            <input type="hidden" name="article_id" value="{{$blogpage->id}}">
                                                 <button type="submit" class="site-btn">send</button>
                                             </div>
+
                                         </div>
                                     </form>
                                 </div>
