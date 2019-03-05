@@ -19,14 +19,14 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->text('text');
             $table->text('authortext');
-            $table->string('validated')->nullable();
+            $table->string('validated')->default(false);
             $table->string('day');
             $table->string('month');
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('verified')->nullable();
+           ;
             $table->timestamps();
             
         });

@@ -74,7 +74,8 @@
                             <h2>Comments {{$count}}</h2>
                                 <ul class="comment-list">
                                    @foreach ($comments as $item)
-                                   <li>
+                                  
+                                  <li>
                                         <div class="avatar">
                                             <img src="img/avatar/01.jpg" alt="">
                                         </div>
@@ -83,6 +84,7 @@
                                             <p>{{$item->text}}</p>
                                         </div>
                                     </li>
+                                
                                    @endforeach
                                    
                                 </ul>

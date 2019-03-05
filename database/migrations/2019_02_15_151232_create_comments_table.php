@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration
             $table->string('day');
             $table->text('text');
             $table->string('email')->unique();
-            $table->string('validated')->nullable();
+            $table->string('validated')->default(false);
             $table->unsignedInteger('article_id');
             $table->foreign('article_id')->references('id')->on('articles');
             $table->timestamps();

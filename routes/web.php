@@ -40,7 +40,8 @@ Route::resource('/profile', 'ProfileController');
 //Article
 
 Route::resource('/article', 'ArticleController');
-Route::put('/article/{article}/validate', 'ArticleController@validationArticle')->name('validate.article');
+Route::put('/article/{article}/validate', 'ArticleController@validationarticle')->name('validate.article');
+Route::get('/article/validate/plz', 'ArticleController@validateplz')->name('validateplz');
 
 //Article filters
 

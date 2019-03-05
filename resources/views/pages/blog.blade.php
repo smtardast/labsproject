@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-7 blog-posts">
                         @foreach ($blogpages as $item)
-                           @if ($item->verified==null)
+                          
                                 <!-- Post item -->
                         <div class="post-item">
                                 <div class="post-thumbnail">
@@ -63,7 +63,7 @@
                                 <a href="{{route('blogpage.show',['blogpage'=>$item->id])}}" class="read-more">Read More</a>
                                 </div>
                             </div>
-                           @endif
+                          
                         @endforeach
                         
                         <div class="page-pagination">

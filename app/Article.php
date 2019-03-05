@@ -22,4 +22,12 @@ class Article extends Model
     public function tags(){
         return $this->belongsToMany('App\Tag', 'article_tags', 'article_id', 'tag_id');
     }
+
+    public function scopeValidated($query){
+        return $query->where('validated', '=', true);
+    }
+
+    public function scopeTovalidate($query){
+        return $query->where('validated', '=', false);
+    }
 }

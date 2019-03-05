@@ -21,7 +21,7 @@ class ArticleController extends Controller
      */
     public function index()
     {  
-        $articles=Article::all();
+        $articles=Article::validated()->get();
         return view('article.article', compact('articles' ));
     }
 
@@ -134,11 +134,19 @@ class ArticleController extends Controller
         return redirect()->back();
     }
 
-    public function validationArticle( Request $request, Article $article){
-        
-        $article->validated="yes";
+    public function validationarticle( Request $request, Article $article){
+     
+        $article->validated=true;
         $article->save();
-        return redirect()->back();
+        $articles=Article::tovalidate()->get();
+        return view('article.article-validate', compact('articles'));
+
+    }
+
+    public function validateplz(){
+     
+        $articles=Article::tovalidate()->get();
+        return view('article.article-validate', compact('articles'));
 
     }
 }

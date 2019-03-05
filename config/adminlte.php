@@ -108,81 +108,88 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'USERS',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'=>'ALL USERS',
+            'url'=>'user',
+            
+               
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'=>'CREATE USERS',
+            'url'=>'user/create',
         ],
-        'ACCOUNT SETTINGS',
+            
+       
+        'ARTICLES',
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
+            'text'=>'ARTICLES',
+            'url'=>'article',
+           
         ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
+        [   
+            'text'=>'ARTICLES TO VALIDATE',
+            'url'=>'/article/validate/plz',
         ],
         [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
+            'text'=>'CREATE ARTICLES',
+            'url'=>'article/create',
         ],
-        'LABELS',
+                
+        [   
+            'text'=>'VALIDATED COMMENTS',
+            'url'=>'comment',
+        ],
+        [   
+            'text'=>'COMMENTS TO VALIDATE',
+            'url'=>'comment/create',
+        ],
+        
+        'SERVICES',
         [
-            'text'       => 'Important',
-            'icon_color' => 'red',
+            'text'=>' SERVICES',
+            'url'=>'service',
+      
         ],
         [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
+            'text'=>'CREATE SERVICES',
+            'url'=>'service/create'
+        ],
+            
+        'PROJECTS',
+        [
+            'text'=>' PROJECTS',
+            'url'=>'project',
         ],
         [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
+            'text'=>'CREATE PROJECTS',
+            'url'=>'project/create',
         ],
+        
+        'CONTENTS',
+        [
+            'text'=>'EDIT HOMEPAGE',
+            'url'=>'homecontent/1/edit',
+        ],
+        [
+            'text'=>'EDIT CONTACT COMPONENT',
+            'url'=>'contactcomponent/1/edit',
+        ],
+        [
+            'text'=>'EDIT SERVICE PAGE',
+            'url'=>'servicepage/1/edit',
+        ],
+        [
+            'text'=>'EDIT CAROUSEL',
+            'url'=>'carousel',
+        ],
+
+        'CLIENTS',
+        [
+            'text'=>'CLIENTS',
+            'url'=>'client',
+        ],
+       
     ],
 
     /*

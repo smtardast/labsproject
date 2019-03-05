@@ -16,7 +16,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments= Comment::all();
+        $comments= Comment::validated()->get();
         return view('comment.comment', compact('comments'));
     }
 
@@ -27,7 +27,8 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        $comments= Comment::tovalidate()->get();
+        return view('comment.comment-validate', compact('comments'));
     }
 
     /**
@@ -58,7 +59,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+   
     }
 
     /**
@@ -82,7 +83,7 @@ class CommentController extends Controller
     public function update(Request $request, Comment $comment)
     {   
         
-        $comment->validated='yes';
+        $comment->validated=true;
         $comment->save();
         return redirect()->back();
 
