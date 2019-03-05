@@ -13,8 +13,11 @@
 
 <p>Job: {{$profile->job}}</p>
 
+@can('update', $profile->user)
+    
 <a href="{{route('profile.edit', ['profile'=>$profile->id])}}">
         <button type="button" class="btn btn-secondary">Edit</button>
 </a>
+@endcan
 
 @stop

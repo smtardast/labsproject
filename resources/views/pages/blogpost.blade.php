@@ -55,7 +55,7 @@
                                 <div class="post-meta">
                                     <a href="">{{$blogpage->user->name}}</a>
                                     <a href="">{{$blogpage->category->category}}</a>
-                                    <a href="">2 Comments</a>
+                                    <a href="">{{$count}} Comments</a>
                                 </div>
                                 <p>{!!$blogpage->text!!}</p>
                             </div>

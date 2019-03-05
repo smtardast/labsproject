@@ -18,13 +18,13 @@ class UsersTableSeeder extends Seeder
           'role_id'=>'1',
 
       ]);
-    //   User::create([
-    //     'name'=>'Mack',
-    //     'email'=>'pimp@at.at',
-    //     'password'=>bcrypt('pimppimp'),
-    //     'role_id'=>'2',
+      User::create([
+        'name'=>'Mack',
+        'email'=>'pimp@at.at',
+        'password'=>bcrypt('pimppimp'),
+        'role_id'=>'2',
 
-    // ]);
+    ]);
     // User::create([
     //     'name'=>'Hoe',
     //     'email'=>'wherethehoes@at.at',

@@ -30,16 +30,21 @@
                 
                     
                 </div>
-            <div class="form-group">
-                    <label for="">Role</label>
-                    <select name="role_id" id="">
-                        @foreach ($roles as $item)
-                    <option value="{{$item->id}}">{{$item->role}}</option>
-                        @endforeach
-                    </select>
+
+                @can('update', $item)
+                
+                            <div class="form-group">
+                                    <label for="">Role</label>
+                                    <select name="role_id" id="">
+                                        @foreach ($roles as $item)
+                                    <option value="{{$item->id}}">{{$item->role}}</option>
+                                        @endforeach
+                                    </select>
+                                    
+                            </div>
                     
-            </div>
-    
+                
+                @endcan
     
             <button type="submit">Submit</button>
         </form>

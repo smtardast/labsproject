@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -52,5 +53,17 @@ class User extends Authenticatable
     public function scopeTeam($query)
     {
         return $query->where('role_id', '=', 2);
+    }
+
+    public function isAdmin(){
+        return Auth::user()->role->name === 'admin';
+    }
+
+    public function isEditor(){
+        return Auth::user()->role->name === 'editor';
+    }
+
+    public function isGuest(){
+        return Auth::user()->role->name === 'guest';
     }
 }

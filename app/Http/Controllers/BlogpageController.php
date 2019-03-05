@@ -20,7 +20,7 @@ class BlogpageController extends Controller
     public function index()
     {   $categories=Category::all();
         $instagrams=Instagram::all();
-        $blogpages=Article::paginate(3);
+        $blogpages=Article::validated()->paginate(3);
         $tags=Tag::all();
         return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags'));
     }
@@ -58,8 +58,8 @@ class BlogpageController extends Controller
         
         $categories=Category::all();
         $instagrams=Instagram::all();
-        $comments= Comment::where('article_id', $blogpage->id)->get();
-        $count= Comment::where('article_id', $blogpage->id)->get()->count();
+        $comments= Comment::validated()->where('article_id', $blogpage->id)->get();
+        $count= Comment::validated()->where('article_id', $blogpage->id)->get()->count();
         $tags=Tag::all();
         
         return view('pages.blogpost', compact('blogpage', 'categories', 'instagrams', 'comments', 'count', 'tags'));
@@ -122,7 +122,7 @@ class BlogpageController extends Controller
 
     public function search(Request $request){
         $keyword=$request->input('inputsearcher');
-        $blogpages=Article::where('title', 'LIKE', '%'.$keyword.'%')->get()->paginate(3);
+        $blogpages=Article::validated()->where('title', 'LIKE', '%'.$keyword.'%')->get();
         $categories=Category::all();
         $instagrams=Instagram::all();
         $tags=Tag::all();

@@ -13,7 +13,7 @@
     @csrf
     @method('PUT')
     <div class="form-group">
-      <label for="">Create a category</label>
+      <label for="">Edit a category</label>
       <input type="text"
         class="form-control" name="category" id="" aria-describedby="helpId" placeholder="" value="{{old('category',$category->category)}}">
       

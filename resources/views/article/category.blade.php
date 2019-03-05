@@ -22,31 +22,35 @@
                 <tr>
                 <th>{{$item->id}}</th>
                 <th>{{$item->category}}</th>
+                @can('admin')
                 <th>
-                <a name="" id="" class="btn btn-primary" href="{{route('category.edit', ['category'=>$item->id])}}" role="button">Edit</a>
-                <form action="{{route('category.destroy', ['category'=>$item->id])}}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </th>
+                        <a name="" id="" class="btn btn-primary" href="{{route('category.edit', ['category'=>$item->id])}}" role="button">Edit</a>
+                        <form action="{{route('category.destroy', ['category'=>$item->id])}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </th>
+                @endcan
                     
                 </tr>
             @endforeach
         </tbody>
       </table>
 
+@can('editor')
 <form action="{{route('category.store')}}" method="post">
-    @csrf
-    <div class="form-group">
-      <label for="">Create a category</label>
-      <input type="text"
-        class="form-control" name="category" id="" aria-describedby="helpId" placeholder="">
-      
-    </div>
-
-    <button type="submit">Submit</button>
-</form>
+        @csrf
+        <div class="form-group">
+          <label for="">Create a category</label>
+          <input type="text"
+            class="form-control" name="category" id="" aria-describedby="helpId" placeholder="">
+          
+        </div>
+    
+        <button type="submit">Submit</button>
+    </form>
+@endcan
 
 @stop

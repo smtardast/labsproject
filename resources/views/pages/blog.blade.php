@@ -57,7 +57,7 @@
                                     <div class="post-meta">
                                         <a href="">{{$item->user->name}}</a>
                                         <a href="">{{$item->category->category}}</a>
-                                        <a href="">{{count($item->comments->where('verified', 'yes'))}} Comments</a>
+                                        <a href="">{{count($item->comments->where('validated', true))}} Comments</a>
                                     </div>
                                 <p>{!! str_limit($item->text, 330) !!}</p>
                                 <a href="{{route('blogpage.show',['blogpage'=>$item->id])}}" class="read-more">Read More</a>

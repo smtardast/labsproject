@@ -11,6 +11,8 @@ use App\Homepage;
 use App\Contactcomponent;
 use App\User;
 use App\Client;
+use App\Carousel;
+
 
 class HomeController extends Controller
 {
@@ -38,6 +40,7 @@ class HomeController extends Controller
         $projects = Project::InRandomOrder()->take(3)->get();
         $contentsH= Homepage::all()->first();
         $contentsC= Contactcomponent::all()->first();
-        return view('pages.home', compact('contents','contentsH','contentsC', 'services', 'projects', 'teams', 'clients'));
+        $carousels=Carousel::all();
+        return view('pages.home', compact('contents','contentsH','contentsC', 'services', 'projects', 'teams', 'clients', 'carousels'));
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Profile;
 class ProfilesTableSeeder extends Seeder
 {
     /**
@@ -11,6 +11,11 @@ class ProfilesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Profile::create([
+            'job'=>'Pimp Daddy',
+            'image'=>'6s0ALOs4WR5eBu0WH4j9nWhO0ijyCnAw7WODWtdT.jpeg',
+            'user_id'=>'2',
+
+        ]);
     }
 }

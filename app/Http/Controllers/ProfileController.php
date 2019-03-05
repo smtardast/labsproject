@@ -45,7 +45,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Profile $profile)
-    {
+    {  
         return view('profile.profile', compact('profile'));
     }
 
