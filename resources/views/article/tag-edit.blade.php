@@ -7,8 +7,8 @@
 @stop
 
 @section('content')
-
-
+@can('admin')
+    
 <form action="{{route('tag.update', ['tag'=>$tag->id])}}" method="post">
     @csrf
     @method('PUT')
@@ -18,8 +18,12 @@
         class="form-control" name="tag" id="" aria-describedby="helpId" placeholder="" value="{{old('tag',$tag->tag)}}">
       
     </div>
-
-    <button type="submit">Submit</button>
+@can('admin')
+    
+<button type="submit">Submit</button>
+@endcan
 </form>
+@endcan
+
 
 @stop

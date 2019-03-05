@@ -7,23 +7,32 @@
 @stop
 
 @section('content')
+@can('editor')
+
 <a name="" id="" class="btn btn-dark" href="{{route('article.create')}}" role="button">Create an article</a>
     @foreach ($articles as $item)
+
+    @can('update', $item)
+        
     <h2>{{$item->title}}</h2>
     <img src="{{Storage::disk('article')->url($item->image)}}" alt="">
     <p>{!!($item->text)!!}</p>
     <p>{{$item->user->name}}</p>
     <p>{{$item->category->category}}</p>
     {{-- <p>{{$item->tag->tag}}</p> --}}
+    @foreach ($item->tags as $item)
+    <p>{{$item->name}}</p>
+    @endforeach
+    
+    @can('admin')
+        
     <form action="{{route('validate.article',['article'=>$item->id])}}" method="post">
             @method('PUT')
             @csrf
         
             <button type="submit">Validate</button>
         </form>
-    @foreach ($item->tags as $item)
-<p>{{$item->name}}</p>
-    @endforeach
+    @endcan
 
 
 
@@ -37,6 +46,8 @@
 </form>
 
 </form>
+    @endcan
 
     @endforeach
+@endcan
 @stop

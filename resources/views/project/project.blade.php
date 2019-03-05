@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+@can('admin')
+    
 <a name="" id="" class="btn btn-primary" href="{{route('project.create')}}" role="button">Create a new project</a>
    @foreach ($projects as $item)
    <div class="card" style="width: 18rem;">
@@ -26,4 +28,5 @@
         </div>
       </div>
    @endforeach
+@endcan
 @stop

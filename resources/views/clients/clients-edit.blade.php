@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+@can('admin')
+    
 <form action="{{route('client.update', ['client'=>$client->id])}}" method="post" 
 enctype="multipart/form-data">
 
@@ -39,4 +41,5 @@ enctype="multipart/form-data">
     <button type="submit">Submit</button>
 
 </form>
+@endcan
 @stop

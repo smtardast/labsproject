@@ -13,14 +13,16 @@
     <p>{{$item->text}}</p>
     <p>{{$item->email}}</p>
 
+@can('admin')
+<form action="{{route('comment.destroy',['comment'=>$item->id])}}" method="POST">
+        @method('DELETE')
+    @csrf
 
+    <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+@endcan
 
     
-    <form action="{{route('comment.destroy',['comment'=>$item->id])}}" method="POST">
-            @method('DELETE')
-        @csrf
-    
-        <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+   
 @endforeach
 @stop

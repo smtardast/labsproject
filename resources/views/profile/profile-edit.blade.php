@@ -7,6 +7,9 @@
 @stop
 
 @section('content')
+
+@can('admin')
+    
 <form action="{{route('profile.update', ['profile'=>$profile->id])}}" method="post" enctype="multipart/form-data">
 
 @method('PUT')
@@ -27,4 +30,6 @@
 
         <button type="submit">Submit</button>
     </form>
+@endcan
+
 @stop

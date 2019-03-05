@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+@can('admin')
     
 <form action="{{route('carousel.store')}}" method="post" enctype="multipart/form-data">
     @csrf
@@ -31,4 +32,5 @@
     </div>
   </div>
 @endforeach
+@endcan 
 @stop

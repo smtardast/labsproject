@@ -7,8 +7,8 @@
 @stop
 
 @section('content')
-
-
+@can('admin')
+    
 <form action="{{route('category.update', ['category'=>$category->id])}}" method="post">
     @csrf
     @method('PUT')
@@ -18,8 +18,12 @@
         class="form-control" name="category" id="" aria-describedby="helpId" placeholder="" value="{{old('category',$category->category)}}">
       
     </div>
-
-    <button type="submit">Submit</button>
+@can('admin')
+    
+<button type="submit">Submit</button>
+@endcan
 </form>
+@endcan
+
 
 @stop

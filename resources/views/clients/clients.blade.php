@@ -7,23 +7,26 @@
 @stop
 
 @section('content')
-<div class="row">
-    <a name="" id="" class="btn btn-primary" href="{{route('client.create')}}" role="button">Make a client profile</a>
-</div>
-@foreach ($clients as $item)
-    
-    <img src="{{Storage::disk('client')->url($item->image)}}" alt="">
-    <h3>{{$item->name}}</h3>
-    <h4>{{$item->job}}</h4>
-    <p>{{$item->text}}</p>
-    <a name="" id="" class="btn btn-primary" href="{{route('client.edit', ['client'=>$item->id])}}" role="button">Edit</a>
-    <form action="{{route('client.destroy', ['client'=>$item->id])}}" method="POST">
-        @method('DELETE')
-        @csrf
+@can('admin')
+    <div class="row">
+        <a name="" id="" class="btn btn-primary" href="{{route('client.create')}}" role="button">Make a client profile</a>
+    </div>
+    @foreach ($clients as $item)
         
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
+        <img src="{{Storage::disk('client')->url($item->image)}}" alt="">
+        <h3>{{$item->name}}</h3>
+        <h4>{{$item->job}}</h4>
+        <p>{{$item->text}}</p>
+        <a name="" id="" class="btn btn-primary" href="{{route('client.edit', ['client'=>$item->id])}}" role="button">Edit</a>
+        <form action="{{route('client.destroy', ['client'=>$item->id])}}" method="POST">
+            @method('DELETE')
+            @csrf
+            
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        
+    @endforeach
     
-@endforeach
+@endcan
 
 @stop

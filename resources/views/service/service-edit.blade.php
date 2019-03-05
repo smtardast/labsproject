@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+@can('admin')
+    
 <form action="{{route('service.update', ['service'=>$service->id])}}" method="post">
         @method('PUT')
         @csrf
@@ -33,4 +35,5 @@
         </div>
         <button type="submit">Submit</button>
     </form>
+@endcan
 @stop

@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+@can('admin')
+    
 <form action="{{route('homecontent.update', ['homecontent'=>$homecontent->id])}}" method="post">
 
         @method('PUT')
@@ -62,4 +64,5 @@
 
           <button type="submit">Submit</button>
     </form>
+@endcan
 @stop

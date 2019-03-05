@@ -22,6 +22,9 @@
                 <tr>
                 <th>{{$item->id}}</th>
                 <th>{{$item->tag}}</th>
+                
+                @can('admin')
+                    
                 <th>
                 <a name="" id="" class="btn btn-primary" href="{{route('tag.edit', ['tag'=>$item->id])}}" role="button">Edit</a>
                 <form action="{{route('tag.destroy', ['tag'=>$item->id])}}" method="POST">
@@ -31,6 +34,8 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </th>
+                @endcan
+                
                     
                 </tr>
             @endforeach

@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+@can('admin')
+    
 <form action="{{route('contactcomponent.update', ['contactcomponent'=>$contactcomponent->id])}}" method="post">
         @csrf
         @method('PUT')
@@ -35,4 +37,5 @@
 
           <button type="submit">Submit</button>
     </form>
+@endcan
 @stop

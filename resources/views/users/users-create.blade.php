@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+@can('admin')
+    
 <form action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
 
     @csrf
@@ -54,4 +56,6 @@
 
         <button type="submit">Submit</button>
     </form>
+@endcan
+
 @stop

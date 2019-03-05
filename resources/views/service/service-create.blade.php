@@ -7,7 +7,8 @@
 @stop
 
 @section('content')
-
+@can('admin')
+    
 <i class="flaticon-013-puzzle"></i>
 
 <form action="{{route('service.store')}}" method="post">
@@ -36,4 +37,5 @@
 
        <button type="submit">Submit</button>
    </form>
+@endcan
 @stop

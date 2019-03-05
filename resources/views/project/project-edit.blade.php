@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+@can('admin')
+    
 <form action="{{route('project.update',['project'=>$project->id])}}" method="post" enctype="multipart/form-data">
 
     @method('PUT')
@@ -43,4 +45,5 @@
             <button type="submit">Submit</button>
 
     </form>
+@endcan
 @stop

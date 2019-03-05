@@ -8,6 +8,12 @@
 
 @section('content')
 @foreach ($comments as $item)
+
+@can('admin')
+    
+
+
+
     <h3>{{$item->title}}</h3>
     <h4>{{$item->name}}</h4>
     <p>{{$item->text}}</p>
@@ -33,5 +39,7 @@
     
         <button type="submit" class="btn btn-danger">Delete</button>
         </form>
+
+        @endcan
 @endforeach
 @stop

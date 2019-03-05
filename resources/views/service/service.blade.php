@@ -7,7 +7,8 @@
 @stop
 
 @section('content')
-
+@can('admin')
+    
 <a name="" id="" class="btn btn-primary" href="{{route('service.create')}}" role="button">Create a service</a>
 
 @foreach ($services as $item)
@@ -25,4 +26,5 @@
         <button type="submit" class="btn btn-danger">Delete</button>
     </form>
 @endforeach
+@endcan
 @stop

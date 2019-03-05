@@ -144,6 +144,15 @@ return [
             'text'=>'COMMENTS TO VALIDATE',
             'url'=>'comment/create',
         ],
+        [   
+            'text'=>'CATEGORIES',
+            'url'=>'category',
+        ],
+        [   
+            'text'=>'TAGS',
+            'url'=>'tag',
+        ],
+
         
         'SERVICES',
         [
