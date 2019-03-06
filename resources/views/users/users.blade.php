@@ -35,14 +35,17 @@
        <a href="{{route('user.edit', ['user'=>$item->id])}}">
             <button type="button" class="btn btn-secondary">Edit</button>
         </a>
+        @endcan
+        @cannot('update', $item)
+            
         <form action="{{route('user.destroy',['user'=>$item->id])}}" method="POST">
                 @method('DELETE')
             @csrf
         
             <button type="submit" class="btn btn-danger">Delete</button>
             </form>
+        @endcan
             
-       @endcan
                 
                 
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Service;
 use App\Icon;
 use Illuminate\Http\Request;
+use App\Http\Requests\ServiceStore;
+use App\Http\Requests\ServiceUpdate;
+
 
 class ServiceController extends Controller
 {
@@ -36,7 +39,7 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceStore $request)
     {
         $newservice= new Service;
         $newservice->title=$request->title;
@@ -76,7 +79,7 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(ServiceUpdate $request, Service $service)
     {
         $service->title=$request->title;
         $service->text=$request->text;

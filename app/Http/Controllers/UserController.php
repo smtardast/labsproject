@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\ArticleTag;
 use App\Role;
 use App\User;
 use App\Profile;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserStore;
+use App\Http\Requests\UserUpdate;
+use App\Article;
 
 class UserController extends Controller
 {
@@ -37,7 +41,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStore $request)
     {
         $newuser = new User;
         $newprofile= new Profile;
@@ -46,7 +50,7 @@ class UserController extends Controller
         $newuser->password=$request->password;
         $newuser->role_id=$request->role_id; 
         $newuser->save();
-        $newprofile->user_id=$newuser->id;
+        $newuser->user_id=$newuser->id;
         $newprofile->job=$request->job;
         $newprofile->image=$request->image->store('','profile');
         $newprofile->save();
@@ -87,7 +91,7 @@ class UserController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdate $request, User $user)
     {   
         $user->name=$request->name;
         $user->email=$request->email;
@@ -105,9 +109,21 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
-    {
-        $user->delete();
-        $users=User::all();
+    {  
+        
+        //one to many del
+        $articles=Article::where('user_id', 'LIKE', '%'.$user->id.'%')->get();
+        foreach($articles as $item){
+            ArticleTag::where('article_id', 'LIKE', '%'.$article->id.'%')->delete();
+            $item->delete();
+        }
+        
+        //one to one del
+       $profile=$user->profile->id;
+       $profiledel=Profile::where('id', $profile)->delete();
+       
+       $user->delete();
+       $users=User::all();
         return view('users.users', compact('users'));
     }
 }

@@ -18,7 +18,7 @@ class CreateProfilesTable extends Migration
             $table->string('job');
             $table->string('image');   
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');      
+            $table->foreign('user_id')->references('id')->on('users');   
             $table->timestamps();
         });
     }

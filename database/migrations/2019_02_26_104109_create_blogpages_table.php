@@ -15,6 +15,8 @@ class CreateBlogpagesTable extends Migration
     {
         Schema::create('blogpages', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('quotetitle');
+            $table->text('quote');
             $table->timestamps();
         });
     }

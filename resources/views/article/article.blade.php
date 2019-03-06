@@ -19,7 +19,7 @@
 <p>{{$item->name}}</p>
     @endforeach
 
-   @can('update', $item)
+   {{-- @can('update', $item) --}}
        
    <a name="" id="" class="btn btn-secondary" href="{{route('article.edit', ['article'=>$item->id])}}" role="button">Edit</a>
    
@@ -29,7 +29,7 @@
        
        <button type="submit" class="btn btn-danger">Delete</button>
    </form>
-   @endcan
+   {{-- @endcan --}}
 
 
 </form>

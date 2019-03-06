@@ -15,18 +15,33 @@
 
         <div class="form-group">
           <label for="">Name</label>
+           @if ($errors->has('name'))
+      @foreach ($errors->get('name') as $error)
+    <p class="text-danger">{{$errors->first('name')}}</p>
+      @endforeach
+    @endif
           <input type="text"
             class="form-control" name="name" id="" aria-describedby="helpId" placeholder="">
           
         </div>
         <div class="form-group">
         <label for="">Email</label>
+         @if ($errors->has('email'))
+      @foreach ($errors->get('email') as $error)
+    <p class="text-danger">{{$errors->first('email')}}</p>
+      @endforeach
+    @endif
         <input type="text"
             class="form-control" name="email" id="" aria-describedby="helpId" placeholder="">
         
         </div>
         <div class="form-group">
             <label for="">Password</label>
+             @if ($errors->has('password'))
+      @foreach ($errors->get('password') as $error)
+    <p class="text-danger">{{$errors->first('password')}}</p>
+      @endforeach
+    @endif
             <input type="text"
                 class="form-control" name="password" id="" aria-describedby="helpId" placeholder="">
             

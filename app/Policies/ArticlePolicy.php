@@ -52,6 +52,7 @@ class ArticlePolicy
      */
     public function update(User $user, Article $article)
     {
+        // dd($article->user_id == $user->id);
         return $user->id == $article->user_id;
     }
 

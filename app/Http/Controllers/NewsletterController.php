@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Newsletter;
 use Illuminate\Http\Request;
 use App\Events\NewsletterEvent;
+use App\Http\Requests\NewsletterStore;
+
+
 class NewsletterController extends Controller
 {
     /**
@@ -34,7 +37,7 @@ class NewsletterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsletterStore $request)
     {
         $newnewsletter= new Newsletter;
         $newnewsletter->email=$request->email;

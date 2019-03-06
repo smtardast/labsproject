@@ -6,6 +6,7 @@ use App\Comment;
 use Illuminate\Http\Request;
 use App\Article;
 use Carbon\Carbon;
+use App\Http\Requests\CommentStore;
 
 class CommentController extends Controller
 {
@@ -37,7 +38,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentStore $request)
     {
         $newcomment= new Comment;
         $newcomment->name=$request->name;

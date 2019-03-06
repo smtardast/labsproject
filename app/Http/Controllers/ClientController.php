@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientStore;
+use App\Http\Requests\ClientUpdate;
 
 class ClientController extends Controller
 {
@@ -35,7 +37,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientStore $request)
     {
         $newclient=new Client;
         $newclient->name=$request->name;
@@ -77,7 +79,7 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(ClientUpdate $request, Client $client)
     {
         $client->name=$request->name;
         $client->job=$request->job;

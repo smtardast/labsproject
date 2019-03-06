@@ -13,6 +13,11 @@
     @csrf
     <div class="form-group">
       <label for="">Add an image</label>
+      @if ($errors->has('image'))
+      @foreach ($errors->get('image') as $error)
+    <p class="text-danger">{{$errors->first('image')}}</p>
+      @endforeach
+    @endif
       <input type="file"
         class="form-control" name="image" id="" aria-describedby="helpId">
     </div>

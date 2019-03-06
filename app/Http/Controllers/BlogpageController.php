@@ -9,6 +9,9 @@ use App\Instagram;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Tag;
+use App\Http\Requests\BlogpageUpdate;
+
+
 
 class BlogpageController extends Controller
 {
@@ -21,8 +24,10 @@ class BlogpageController extends Controller
     {   $categories=Category::all();
         $instagrams=Instagram::all();
         $blogpages=Article::validated()->paginate(3);
+        $quotes=Blogpage::all()->first();
         $tags=Tag::all();
-        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags'));
+
+        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 
     /**
@@ -61,8 +66,9 @@ class BlogpageController extends Controller
         $comments= Comment::validated()->where('article_id', $blogpage->id)->get();
         $count= Comment::validated()->where('article_id', $blogpage->id)->get()->count();
         $tags=Tag::all();
-        
-        return view('pages.blogpost', compact('blogpage', 'categories', 'instagrams', 'comments', 'count', 'tags'));
+        $quotes=Blogpage::all()->first();
+
+        return view('pages.blogpost', compact('blogpage', 'categories', 'instagrams', 'comments', 'count', 'tags', 'quotes'));
     }
 
     /**
@@ -73,7 +79,7 @@ class BlogpageController extends Controller
      */
     public function edit(Blogpage $blogpage)
     {
-        //
+        return view('contents.blogcontent', compact('blogpage'));
     }
 
     /**
@@ -83,9 +89,14 @@ class BlogpageController extends Controller
      * @param  \App\Blogpage  $blogpage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blogpage $blogpage)
+    public function update(BlogpageUpdate $request, Blogpage $blogpage)
     {
-        //
+        $blogpage->quotetitle=$request->quotetitle;
+        $blogpage->quote=$request->quote;
+        $blogpage->save();
+        return redirect()->back();
+
+
     }
 
     /**
@@ -107,7 +118,9 @@ class BlogpageController extends Controller
         $categories=Category::all();
         $instagrams=Instagram::all();
         $tags=Tag::all();
-        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags'));
+        $quotes=Blogpage::all();
+
+        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 
     public function tagFilter(Tag $blogpage){
@@ -117,7 +130,9 @@ class BlogpageController extends Controller
         $categories=Category::all();
         $instagrams=Instagram::all();
         $tags=Tag::all();
-        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags'));
+        $quotes=Blogpage::all();
+
+        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 
     public function search(Request $request){
@@ -126,6 +141,8 @@ class BlogpageController extends Controller
         $categories=Category::all();
         $instagrams=Instagram::all();
         $tags=Tag::all();
-        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags'));
+        $quotes=Blogpage::all();
+
+        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 }

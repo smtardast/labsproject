@@ -11,6 +11,8 @@ use Storage;
 use Carbon\Carbon;
 use App\Tag;
 use App\ArticleTag;
+use App\Http\Requests\ArticleStore;
+use App\Http\Requests\ArticleUpdate;
 
 class ArticleController extends Controller
 {
@@ -22,7 +24,7 @@ class ArticleController extends Controller
     public function index()
     {  
         $articles=Article::validated()->get();
-        return view('article.article', compact('articles' ));
+        return view('article.article', compact('articles'));
     }
 
     /**
@@ -45,7 +47,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleStore $request)
     {
         $newarticle= new Article;
         $newarticle->title=$request->title;
@@ -100,7 +102,7 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleUpdate $request, Article $article)
     {
         $article->title=$request->title;
         $article->image=$request->image->store('','article');
@@ -128,13 +130,14 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-      
+      ArticleTag::where('article_id', 'LIKE', '%'.$article->id.'%')->delete();
         $article->delete();
        
         return redirect()->back();
     }
 
     public function validationarticle( Request $request, Article $article){
+     
      
         $article->validated=true;
         $article->save();
@@ -144,7 +147,6 @@ class ArticleController extends Controller
     }
 
     public function validateplz(){
-     
         $articles=Article::tovalidate()->get();
         return view('article.article-validate', compact('articles'));
 

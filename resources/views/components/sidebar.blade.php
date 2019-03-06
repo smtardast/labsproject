@@ -39,5 +39,15 @@
                 
             </ul>
         </div>
+        <!-- Single widget -->
+					<div class="widget-item">
+
+                       
+                            <h2 class="widget-title">{{$quotes->quotetitle}}</h2>
+                            <div class="quote">
+                                <span class="quotation">‘​‌‘​‌</span>
+                            <p>{{$quotes->quote}}</p>
+                            </div>
+                        </div>
         
 </div>

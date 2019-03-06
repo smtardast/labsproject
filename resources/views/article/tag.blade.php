@@ -46,6 +46,11 @@
     @csrf
     <div class="form-group">
       <label for="">Create a tag</label>
+      @if ($errors->has('tag'))
+      @foreach ($errors->get('tag') as $error)
+    <p class="text-danger">{{$errors->first('tag')}}</p>
+      @endforeach
+    @endif
       <input type="text"
         class="form-control" name="tag" id="" aria-describedby="helpId" placeholder="">
       

@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<h2>Hi, {{$profile->user->name}}!</h2>
+{{-- <h2>Hi, {{$prsofile->user->name}}!</h2> --}}
 
 <img src="{{Storage::disk('profile')->url($profile->image)}}" alt="">
 

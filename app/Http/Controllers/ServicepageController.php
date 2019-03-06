@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Service;
 use App\Project;
 use App\Contactcomponent;
+use App\Http\Requests\ServicepageUpdate;
+
 
 class ServicepageController extends Controller
 {
@@ -81,7 +83,7 @@ class ServicepageController extends Controller
      * @param  \App\Servicepage  $servicepage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Servicepage $servicepage)
+    public function update(ServicepageUpdate $request, Servicepage $servicepage)
     {
         $servicepage->servicetitle=$request->servicetitle;
         $servicepage->projectstitle=$request->projectstitle;

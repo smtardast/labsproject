@@ -14,6 +14,11 @@
     @method('PUT')
     <div class="form-group">
       <label for="">Edit a category</label>
+      @if ($errors->has('category'))
+      @foreach ($errors->get('category') as $error)
+    <p class="text-danger">{{$errors->first('category')}}</p>
+      @endforeach
+    @endif
       <input type="text"
         class="form-control" name="category" id="" aria-describedby="helpId" placeholder="" value="{{old('category',$category->category)}}">
       

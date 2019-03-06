@@ -56,14 +56,14 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-        return Auth::user()->role->name === 'admin';
+        return Auth::user()->role->role === 'admin';
     }
 
     public function isEditor(){
-        return Auth::user()->role->name === 'editor';
+        return Auth::user()->role->role === 'editor';
     }
 
     public function isGuest(){
-        return Auth::user()->role->name === 'guest';
+        return Auth::user()->role->role === 'guest';
     }
 }

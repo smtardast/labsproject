@@ -14,18 +14,33 @@
       @csrf
       <div class="form-group">
         <label for="">Title</label>
+        @if ($errors->has('title'))
+        @foreach ($errors->get('title') as $error)
+      <p class="text-danger">{{$errors->first('title')}}</p>
+        @endforeach
+      @endif
         <input type="text"
         class="form-control" name="title" id="" aria-describedby="helpId" placeholder="">
       </div>
       
       <div class="form-group">
         <label for="">Image</label>
+        @if ($errors->has('image'))
+        @foreach ($errors->get('image') as $error)
+      <p class="text-danger">{{$errors->first('image')}}</p>
+        @endforeach
+      @endif
         <input type="file"
         class="form-control" name="image" id="" aria-describedby="helpId">
       </div>
       
       <div class="form-group">
         <label for="">Text</label>
+        @if ($errors->has('text'))
+        @foreach ($errors->get('text') as $error)
+      <p class="text-danger">{{$errors->first('text')}}</p>
+        @endforeach
+      @endif
         <textarea class="form-control" name="text" id="summary-ckeditor" rows="3">
           
         </textarea>
@@ -33,6 +48,11 @@
       
       <div class="form-group">
         <label for="">Author comment</label>
+        @if ($errors->has('authortext'))
+        @foreach ($errors->get('authortext') as $error)
+      <p class="text-danger">{{$errors->first('authortext')}}</p>
+        @endforeach
+      @endif
         <textarea class="form-control" name="authortext" id="" rows="3"></textarea>
       </div>
       

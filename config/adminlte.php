@@ -189,6 +189,10 @@ return [
             'url'=>'servicepage/1/edit',
         ],
         [
+            'text'=>'EDIT BLOGPAGE',
+            'url'=>'blogpage/1/edit',
+        ],
+        [
             'text'=>'EDIT CAROUSEL',
             'url'=>'carousel',
         ],

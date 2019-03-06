@@ -6,6 +6,8 @@ use App\Contact;
 use Illuminate\Http\Request;
 use App\Events\ContactEvent;
 use App\Events\ContactReplyEvent;
+use App\Http\Requests\ContactStore;
+
 
 class ContactController extends Controller
 {
@@ -36,7 +38,7 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){ 
+    public function store(ContactStore $request){ 
     $newcontact= new Contact;
     $newcontact->name=$request->name;
     $newcontact->title=$request->title;

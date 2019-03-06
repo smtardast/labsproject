@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Contactcomponent;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactpageUpdate;
+
 
 class ContactcomponentController extends Controller
 {
@@ -68,7 +70,7 @@ class ContactcomponentController extends Controller
      * @param  \App\Contactcomponent  $contactcomponent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contactcomponent $contactcomponent)
+    public function update(ContactpageUpdate $request, Contactcomponent $contactcomponent)
     {
        $contactcomponent->title=$request->title;
        $contactcomponent->description=$request->description; 

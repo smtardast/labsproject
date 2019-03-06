@@ -6,6 +6,7 @@ use App\Servicepage;
 use App\Contactcomponent;
 use App\Homepage;
 use Illuminate\Http\Request;
+use App\Http\Requests\HomepageUpdate;
 
 class HomepageController extends Controller
 {
@@ -70,7 +71,7 @@ class HomepageController extends Controller
      * @param  \App\Homepage  $homepage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Homepage $homepage)
+    public function update(HomepageUpdate $request, Homepage $homepage)
     {   
         $homepage->subtitle=$request->subtitle;
         $homepage->descriptiontitle=$request->descriptiontitle;

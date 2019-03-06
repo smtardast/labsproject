@@ -16,6 +16,8 @@ class UsersTableSeeder extends Seeder
           'email'=>'sara@at.at',
           'password'=>bcrypt('sarasara'),
           'role_id'=>'1',
+        
+
 
       ]);
       User::create([
@@ -23,6 +25,9 @@ class UsersTableSeeder extends Seeder
         'email'=>'pimp@at.at',
         'password'=>bcrypt('pimppimp'),
         'role_id'=>'2',
+        
+        
+
 
     ]);
     // User::create([

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Carousel;
 use Illuminate\Http\Request;
+use App\Http\Requests\CarouselStore;
 
 class CarouselController extends Controller
 {
@@ -34,7 +35,7 @@ class CarouselController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CarouselStore $request)
     {
         $newcarousel= new Carousel;
         $newcarousel->image=$request->image->store('', 'carousel');
