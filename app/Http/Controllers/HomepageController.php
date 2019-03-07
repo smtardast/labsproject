@@ -17,7 +17,7 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        
+       
     }
 
     /**
@@ -82,7 +82,17 @@ class HomepageController extends Controller
         $homepage->teamtitle=$request->teamtitle;
         $homepage->browsetitle=$request->browsetitle;
         $homepage->browsesubtitle=$request->browsesubtitle;
-        $homepage->save();
+        if ($homepage->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         return redirect()->back();
          
     }

@@ -45,7 +45,17 @@ class ServiceController extends Controller
         $newservice->title=$request->title;
         $newservice->text=$request->text;
         $newservice->icon_id=$request->icon_id;
-        $newservice->save();
+        if ($newservice->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);        return redirect()->back();
         $services = Service::all();
         return view('service.service',compact('services'));
     }
@@ -84,7 +94,17 @@ class ServiceController extends Controller
         $service->title=$request->title;
         $service->text=$request->text;
        // $service->=$request->;
-       $service->save();
+       if ($service->save()) {
+        
+        return redirect()->back()->with([
+            'message' => 'success',
+            'textmessage' => 'You were successful!'
+        ]);
+    }
+    return redirect()->back()->with([
+        'message' => 'danger',
+        'textmessage' => "There's a problem..."
+    ]);        return redirect()->back();
        $services = Service::all();
         return view('service.service',compact('services'));
 

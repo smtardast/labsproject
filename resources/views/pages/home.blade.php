@@ -38,7 +38,11 @@
 		</div>
 	</div>
 	<!-- Intro Section -->
-
+	@if(session()->get('message'))
+	<div class="alert alert-{{session()->get('message')}}" role="alert">
+	 {{session()->get('textmessage')}}
+	</div>
+	@endif
 
 	<!-- About section -->
 	<div class="about-section">
@@ -128,9 +132,7 @@
 							</div>
 						</div>
 						@endforeach
-						<div >
-								{{$clients->links()}}
-							</div>
+						
 					</div>
 				</div>
 			</div>
@@ -155,16 +157,16 @@
 				<!-- single member -->
 				<div class="col-sm-4">
 					<div class="member">
-						
+						{{-- {{dd(Storage::disk('profile')->url($item->profile->image))}} --}}
 						<img src="{{Storage::disk('profile')->url($item->profile->image)}}" alt="">
 					<h2>{{$item->name}}</h2>
 						<h3>{{$item->profile->job}}</h3>
 					</div>
 				</div>
 				@endforeach
-				<div class="page-pagination">
+				{{-- <div class="page-pagination">
 						{{$teams->links()}}
-					</div>
+					</div> --}}
 				  
 			</div>
 		</div>

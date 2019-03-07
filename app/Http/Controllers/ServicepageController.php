@@ -21,7 +21,7 @@ class ServicepageController extends Controller
     {   
         $contentsC= Contactcomponent::all()->first();
         $contents = Servicepage::all()->first();
-        $services = Service::InRandomOrder()->take(9)->get();
+        $services = Service::InRandomOrder()->paginate(9);
         $projects = Project::all()->sortByDesc('id')->take(3);
         $projects2 = Project::all()->sortByDesc('id')->take(6)->take(-3);
 
@@ -87,8 +87,17 @@ class ServicepageController extends Controller
     {
         $servicepage->servicetitle=$request->servicetitle;
         $servicepage->projectstitle=$request->projectstitle;
-        $servicepage->save();
-        return redirect()->back();
+        if ($servicepage->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);        return redirect()->back();
     }
 
     /**

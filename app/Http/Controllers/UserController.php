@@ -50,10 +50,20 @@ class UserController extends Controller
         $newuser->password=$request->password;
         $newuser->role_id=$request->role_id; 
         $newuser->save();
-        $newuser->user_id=$newuser->id;
+        $newprofile->user_id=$newuser->id;
         $newprofile->job=$request->job;
         $newprofile->image=$request->image->store('','profile');
-        $newprofile->save();
+        if ($newprofile->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $users=User::all();
         return view('users.users', compact('users'));
 
@@ -97,7 +107,17 @@ class UserController extends Controller
         $user->email=$request->email;
         $user->password=$request->password;
         $user->role_id=$request->role_id;
-        $user->save();
+        if ($user->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $users=User::all();
         return view('users.users', compact('users'));
     }

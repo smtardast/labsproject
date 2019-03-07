@@ -41,7 +41,17 @@ class TagController extends Controller
     {   
         $newtag= new Tag;
         $newtag->tag=$request->tag;
-        $newtag->save();
+        if ($newtag->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         return redirect()->back();
 
     }
@@ -78,7 +88,17 @@ class TagController extends Controller
     public function update(TagUpdate $request, Tag $tag)
     {
         $tag->tag=$request->tag;
-        $tag->save();
+        if ($tag->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $tags=Tag::all();
         return view('article.tag', compact('tags'));
     }

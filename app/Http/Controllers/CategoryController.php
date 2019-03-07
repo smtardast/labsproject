@@ -41,8 +41,18 @@ class CategoryController extends Controller
     {
         $newcategory= new Category;
         $newcategory->category=$request->category;
-        $newcategory->save();
-        return redirect()->back();
+        if ($newcategory->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
+       
     }
 
     /**
@@ -77,7 +87,17 @@ class CategoryController extends Controller
     public function update(CategoryUpdate $request, Category $category)
     {
         $category->category=$request->category;
-        $category->save();
+        if ($category->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $categories=Category::all();
         return view('article.category', compact('categories'));
 

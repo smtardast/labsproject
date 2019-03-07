@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
+use App\Testimonial;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class TestimonialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,58 +41,44 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
-    {  
-        return view('profile.profile', compact('profile'));
+    public function show(Testimonial $testimonial)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit(Testimonial $testimonial)
     {
-        return view('profile.profile-edit', compact('profile'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
+     * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, Testimonial $testimonial)
     {
-     $profile->job=$request->job;
-     $profile->image=$request->image->store('','profile');
-     if ($profile->save()) {
-        
-        return redirect()->back()->with([
-            'message' => 'success',
-            'textmessage' => 'You were successful!'
-        ]);
-    }
-    return redirect()->back()->with([
-        'message' => 'danger',
-        'textmessage' => "There's a problem..."
-    ]);     return view('profile.profile', compact('profile'));
-   
-            
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy(Testimonial $testimonial)
     {
         //
     }

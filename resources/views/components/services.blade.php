@@ -1,6 +1,7 @@
 <!-- services section -->
 <div class="services-section spad">
 		<div class="container">
+				
 			<div class="section-title dark">
 				<h2>{{$contents->servicetitle}}</h2>
 			</div>
@@ -19,7 +20,10 @@
 					</div>
 				</div>
 				@endforeach
-
+				
+				<div class="page-pagination">
+						{{$services->links()}}
+					</div>
 				
 				
 			</div>

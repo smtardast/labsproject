@@ -107,6 +107,8 @@
             <div class="container">
             @endif
 
+            @include('partials.notification')
+
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 @yield('content_header')

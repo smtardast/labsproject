@@ -30,4 +30,8 @@ class Article extends Model
     public function scopeTovalidate($query){
         return $query->where('validated', '=', false);
     }
+
+    public function scopeSearchblog($query, $keyword){
+        return $query->where('title', 'LIKE', '%'.$keyword.'%');
+    }
 }

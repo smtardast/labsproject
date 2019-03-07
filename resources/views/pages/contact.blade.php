@@ -34,7 +34,11 @@
             </div>
         </div>
         <!-- Page header end -->
-    
+        @if(session()->get('message'))
+        <div class="alert alert-{{session()->get('message')}}" role="alert">
+         {{session()->get('textmessage')}}
+        </div>
+        @endif
     
         <!-- Google map -->
         <div class="map" id="map-area">

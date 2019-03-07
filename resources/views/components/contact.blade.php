@@ -14,11 +14,12 @@
 				</div>
 				<!-- contact form -->
 				<div class="col-md-6 col-pull">
-				<form class="form-class" id="con_form" method="POST" action="{{route('contact.store')}}">
-
-						@csrf
-						<div class="row">
-							<div class="col-sm-6">
+					<form class="form-class" id="con_form" method="POST" action="{{route('contact.store')}}">
+							
+							
+							@csrf
+							<div class="row">
+								<div class="col-sm-6">
 									@if ($errors->has('name'))
 									@foreach ($errors->get('name') as $error)
 							  <p class="text-danger">{{$errors->first('name')}}</p>

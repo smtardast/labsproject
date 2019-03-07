@@ -13,6 +13,7 @@ use App\Tag;
 use App\ArticleTag;
 use App\Http\Requests\ArticleStore;
 use App\Http\Requests\ArticleUpdate;
+use Image;
 
 class ArticleController extends Controller
 {
@@ -58,9 +59,21 @@ class ArticleController extends Controller
         $newarticle->user_id=Auth::User()->id;
         $newarticle->day=Carbon::now()->format('d');
         $newarticle->month=Carbon::now()->format('M Y');
-        
+        $path=Storage::disk('article')->path($newarticle->image);
+        $img=Image::make($path)->resize(750, 268);
+        $img->save(); 
         //$newarticle->tag=$request->tag;
-        $newarticle->save();
+        if ($newarticle->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $tag= Tag::find($request->tag_id);
         $newarticle->tags()->attach($tag);
         $articles=Article::all();
@@ -111,7 +124,17 @@ class ArticleController extends Controller
         $article->category_id=$request->category_id;
         $article->user_id=$request->user_id;
         //$article->tag=$request->tag;
-        $article->save();
+        if ($article->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $tag=Tag::all();
         $article->tags()->detach($tag);
         $tag= Tag::find($request->tag_id);
@@ -136,19 +159,31 @@ class ArticleController extends Controller
         return redirect()->back();
     }
 
-    public function validationarticle( Request $request, Article $article){
-     
-     
-        $article->validated=true;
-        $article->save();
-        $articles=Article::tovalidate()->get();
-        return view('article.article-validate', compact('articles'));
+    public function validationarticle( Request $request,  $article){
+    // find w article id
+        // $thearticle = Article::find($article);
+        $thearticle = Article::where('id', $article)->first();
+        // dd($thearticle);
+        $thearticle->validated=true;
+        if ($thearticle->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
+        $articles=Article::validated()->get();
+        return view('article.article', compact('articles'));
 
     }
 
-    public function validateplz(){
+    public function validateplz(Article $article){
         $articles=Article::tovalidate()->get();
-        return view('article.article-validate', compact('articles'));
+        return view('article.article-validate', compact('articles', 'article'));
 
     }
 }

@@ -11,7 +11,7 @@
 
 <a name="" id="" class="btn btn-dark" href="{{route('article.create')}}" role="button">Create an article</a>
     @foreach ($articles as $item)
-
+    {{-- {{dd($item->id)}} --}}
     @can('update', $item)
         
     <h2>{{$item->title}}</h2>
@@ -20,8 +20,8 @@
     <p>{{$item->user->name}}</p>
     <p>{{$item->category->category}}</p>
     {{-- <p>{{$item->tag->tag}}</p> --}}
-    @foreach ($item->tags as $item)
-    <p>{{$item->name}}</p>
+    @foreach ($item->tags as $item2)
+    <p>{{$item2->name}}</p>
     @endforeach
     
     @can('admin')
@@ -30,7 +30,7 @@
             @method('PUT')
             @csrf
         
-            <button type="submit">Validate</button>
+        <button type="submit">Validate</button>
         </form>
     @endcan
 

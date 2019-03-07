@@ -11,7 +11,7 @@
 |
 */
 
-
+Route::get('home/backend','HomeController@backend')->name('backend');
 
 Auth::routes();
 

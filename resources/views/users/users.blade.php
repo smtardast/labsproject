@@ -36,7 +36,7 @@
             <button type="button" class="btn btn-secondary">Edit</button>
         </a>
         @endcan
-        @cannot('update', $item)
+        {{-- @cannot('update', $item) --}}
             
         <form action="{{route('user.destroy',['user'=>$item->id])}}" method="POST">
                 @method('DELETE')
@@ -44,7 +44,7 @@
         
             <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-        @endcan
+        {{-- @endcan --}}
             
                 
                 

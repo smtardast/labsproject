@@ -53,8 +53,17 @@ class ProjectController extends Controller
         $path=Storage::disk('project')->path($newproject->image);
         $img=Image::make($path)->resize(360, 260);
         $img->save(); 
-        $newproject->save();
-        $projects=Project::all();
+        if ($newproject->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);        $projects=Project::all();
         $icons=Icon::all();
         return view('project.project', compact('projects', 'icons'));
 
@@ -97,7 +106,17 @@ class ProjectController extends Controller
         $project->text=$request->text;
         $project->icon_id=$request->icon_id;
         $project->image=$request->image->store('','project');
-        $project->save();
+        if ($project->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $projects=Project::all();
         $icons=Icon::all();
         return view('project.project', compact('projects', 'icons'));

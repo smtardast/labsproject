@@ -6,6 +6,8 @@ use App\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClientStore;
 use App\Http\Requests\ClientUpdate;
+use Image;
+use Storage;
 
 class ClientController extends Controller
 {
@@ -44,7 +46,20 @@ class ClientController extends Controller
         $newclient->job=$request->job;
         $newclient->text=$request->text;
         $newclient->image=$request->image->store('', 'client');
-        $newclient->save();
+        $path=Storage::disk('client')->path($newclient->image);
+        $img=Image::make($path)->resize(360, 448);
+        $img->save(); 
+        if ($newclient->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $clients=Client::all();
         return view('clients.clients
         ', compact('clients'));
@@ -85,7 +100,17 @@ class ClientController extends Controller
         $client->job=$request->job;
         $client->text=$request->text;
         $client->image=$request->image->store('','client');
-        $client->save();
+        if ($client->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         $clients=Client::all();
         return view('clients.clients
         ', compact('clients'));

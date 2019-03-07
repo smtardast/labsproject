@@ -20,16 +20,16 @@ class UsersTableSeeder extends Seeder
 
 
       ]);
-      User::create([
-        'name'=>'Mack',
-        'email'=>'pimp@at.at',
-        'password'=>bcrypt('pimppimp'),
-        'role_id'=>'2',
+    //   User::create([
+    //     'name'=>'Mack',
+    //     'email'=>'pimp@at.at',
+    //     'password'=>bcrypt('pimppimp'),
+    //     'role_id'=>'2',
         
         
 
 
-    ]);
+    // ]);
     // User::create([
     //     'name'=>'Hoe',
     //     'email'=>'wherethehoes@at.at',

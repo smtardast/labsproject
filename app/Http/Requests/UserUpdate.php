@@ -25,11 +25,10 @@ class UserUpdate extends FormRequest
     {
         return [
             'name'=>'required|min:4|max:70',
-            'email'=>'required|unique|email',
+            'email'=>'required|email',
             'password'=>'required|min:4|max:70',
             'role_id'=>'required',
-            'job'=>'required|min:4|max:70',
-            'image'=>'required|image',
+            
         ];
     }
 }

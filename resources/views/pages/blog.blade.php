@@ -34,7 +34,11 @@
             </div>
         </div>
         <!-- Page header end-->
-    
+        @if(session()->get('message'))
+        <div class="alert alert-{{session()->get('message')}}" role="alert">
+         {{session()->get('textmessage')}}
+        </div>
+        @endif
     
         <!-- page section -->
         <div class="page-section spad">
@@ -59,7 +63,7 @@
                                         <a href="">{{$item->category->category}}</a>
                                         <a href="">{{count($item->comments->where('validated', true))}} Comments</a>
                                     </div>
-                                <p>{!! str_limit($item->text, 330) !!}</p>
+                                <p class="text-break" wrap="hard">{!! str_limit($item->text, 330) !!}</p>
                                 <a href="{{route('blogpage.show',['blogpage'=>$item->id])}}" class="read-more">Read More</a>
                                 </div>
                             </div>

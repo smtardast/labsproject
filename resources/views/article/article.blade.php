@@ -15,8 +15,8 @@
     <p>{{$item->user->name}}</p>
     <p>{{$item->category->category}}</p>
     {{-- <p>{{$item->tag->tag}}</p> --}}
-    @foreach ($item->tags as $item)
-<p>{{$item->name}}</p>
+    @foreach ($item->tags as $item2)
+<p>{{$item2->name}}</p>
     @endforeach
 
    {{-- @can('update', $item) --}}

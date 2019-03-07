@@ -8,6 +8,7 @@
 
 @section('content')
 <form action="{{route('user.update',['user'=>$user->id])}}" method="post">
+    
     @method('PUT')
         @csrf
     
@@ -46,7 +47,7 @@
                     
                 </div>
 
-                @can('update', $item)
+                @can('update', $user)
                 
                             <div class="form-group">
                                     <label for="">Role</label>

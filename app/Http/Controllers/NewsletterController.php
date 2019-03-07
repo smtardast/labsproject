@@ -41,8 +41,18 @@ class NewsletterController extends Controller
     {
         $newnewsletter= new Newsletter;
         $newnewsletter->email=$request->email;
-        $newnewsletter->save();
         event(new NewsletterEvent($request));
+        if ($newnewsletter->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         return redirect()->back();
     }
 

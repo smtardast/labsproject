@@ -44,9 +44,20 @@ class ContactController extends Controller
     $newcontact->title=$request->title;
     $newcontact->text=$request->text;
     $newcontact->email=$request->email;
-    $newcontact->save();
     event (new ContactEvent($request));
-    return redirect()->back();
+    if ($newcontact->save()) {
+        
+        return redirect()->back()->with([
+            'message' => 'success',
+            'textmessage' => 'You were successful!'
+            
+        ]);
+    }
+    return redirect()->back()->with([
+        'message' => 'danger',
+        'textmessage' => "There's a problem..."       
+    ]);
+    
 
     }
 

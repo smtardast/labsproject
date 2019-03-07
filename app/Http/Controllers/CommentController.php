@@ -47,7 +47,17 @@ class CommentController extends Controller
         $newcomment->email=$request->email;
         $newcomment->article_id=$request->article_id;
         $newcomment->day=Carbon::now()->format('d M Y');
-        $newcomment->save();
+        if ($newcomment->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         return redirect()->back();
 
     }
@@ -85,7 +95,17 @@ class CommentController extends Controller
     {   
         
         $comment->validated=true;
-        $comment->save();
+        if ($comment->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         return redirect()->back();
 
     }

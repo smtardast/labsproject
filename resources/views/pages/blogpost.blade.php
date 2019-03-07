@@ -34,7 +34,11 @@
             </div>
         </div>
         <!-- Page header end-->
-    
+        @if(session()->get('message'))
+        <div class="alert alert-{{session()->get('message')}}" role="alert">
+         {{session()->get('textmessage')}}
+        </div>
+        @endif
     
         <!-- page section -->
         <div class="page-section spad">

@@ -112,36 +112,37 @@ class BlogpageController extends Controller
 
     public function categoryFilter(Category $blogpage){
         
-        $blogpages = $blogpage->article;
+        $blogpages = $blogpage->article->paginate(3);
         // dd($blogpage->article);
         // $blogpages = Article::where('category_id', $blogpage);
         $categories=Category::all();
         $instagrams=Instagram::all();
         $tags=Tag::all();
-        $quotes=Blogpage::all();
+        $quotes=Blogpage::all()->first();
 
         return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 
     public function tagFilter(Tag $blogpage){
-        $blogpages = $blogpage->articles;
+        $blogpages = $blogpage->articles->paginate(3);
         // dd($blogpage->article);
         // $blogpages = Article::where('category_id', $blogpage);
         $categories=Category::all();
         $instagrams=Instagram::all();
         $tags=Tag::all();
-        $quotes=Blogpage::all();
+        $quotes=Blogpage::all()->first();
 
         return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 
     public function search(Request $request){
         $keyword=$request->input('inputsearcher');
-        $blogpages=Article::validated()->where('title', 'LIKE', '%'.$keyword.'%')->get();
+        //dd(Article::validated()->where('title', 'LIKE', '%'.$keyword.'%')->get());
+        $blogpages=Article::validated()->searchblog($keyword)->paginate(3);
         $categories=Category::all();
         $instagrams=Instagram::all();
         $tags=Tag::all();
-        $quotes=Blogpage::all();
+        $quotes=Blogpage::all()->first();
 
         return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }

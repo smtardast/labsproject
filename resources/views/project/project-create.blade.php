@@ -50,7 +50,8 @@
             <label for="">Icon</label>
             <select class="form-control" name="icon_id" id="">
               @foreach ($icons as $item)
-            <option value="{{$item->id}}">{{$item->code}}</option>
+              <input type="radio" value="{{$item->id}}"><i class="{{$item->code}} fa-3x"></i>
+            
               @endforeach
             </select>
             </div>

@@ -4,11 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Testimonial extends Model
 {
     public function user(){
-        return $this->hasMany('App\User', 'role_id', 'id');
+        return $this->belongsTo('App\Client', 'client_id', 'id');
     }
-
-    
 }

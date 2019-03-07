@@ -39,7 +39,17 @@ class CarouselController extends Controller
     {
         $newcarousel= new Carousel;
         $newcarousel->image=$request->image->store('', 'carousel');
-        $newcarousel->save();
+        if ($newcarousel->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
         return redirect()->back();
     }
 
