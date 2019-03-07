@@ -37,15 +37,7 @@ enctype="multipart/form-data">
           class="form-control" name="job" id="" aria-describedby="helpId" placeholder="" value="{{old('job', $client->job)}}">
       </div>
 
-    <div class="form-group">
-      <label for="">Client comment</label>
-       @if ($errors->has('text'))
-      @foreach ($errors->get('text') as $error)
-    <p class="text-danger">{{$errors->first('text')}}</p>
-      @endforeach
-    @endif
-      <textarea class="form-control" name="text" id="" rows="3">{{old('text', $client->text)}}</textarea>
-    </div>
+    
 
     <div class="form-group">
         <label for="">Image</label>

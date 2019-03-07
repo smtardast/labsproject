@@ -41,10 +41,11 @@ class ClientController extends Controller
      */
     public function store(ClientStore $request)
     {
+       
         $newclient=new Client;
         $newclient->name=$request->name;
         $newclient->job=$request->job;
-        $newclient->text=$request->text;
+       
         $newclient->image=$request->image->store('', 'client');
         $path=Storage::disk('client')->path($newclient->image);
         $img=Image::make($path)->resize(360, 448);
@@ -98,7 +99,7 @@ class ClientController extends Controller
     {
         $client->name=$request->name;
         $client->job=$request->job;
-        $client->text=$request->text;
+      
         $client->image=$request->image->store('','client');
         if ($client->save()) {
         

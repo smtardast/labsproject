@@ -61,6 +61,11 @@ Route::resource('/category', 'CategoryController');
 
 Route::resource('/client','ClientController');
 
+//testimonials
+
+Route::resource('/testimonial', 'TestimonialController');
+Route::get('testimonial/client/{client}', 'TestimonialController@maketestimonial')->name('maketestimonial');
+
 //Comments
 
 Route::resource('/comment', 'CommentController');

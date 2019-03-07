@@ -6,7 +6,7 @@
     <h1>Clients</h1>
 @stop
 @section('content')
-@can('admin')
+{{-- @can('admin') --}}
     
 <form action="{{route('client.store')}}" method="post" enctype="multipart/form-data">
 
@@ -29,6 +29,6 @@
     <button type="submit">Submit</button>
 
 </form>
-@endcan
+{{-- @endcan --}}
 
 @stop

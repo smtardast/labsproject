@@ -60,7 +60,7 @@
 							<i class="{{$item->icon->code}}"></i>
 							</div>
 							<h2>{{$item->title}}</h2>
-							<p>{{$item->text}}</p>
+							<p>{{$item->testimonials->text}}</p>
 						</div>
 					</div>
 					@endforeach

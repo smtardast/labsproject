@@ -14,7 +14,7 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -24,7 +24,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+         
     }
 
     /**
@@ -33,9 +33,22 @@ class TestimonialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, $client)
+    {    dd('hi');
+        $newtestimonial= new Testimonial;
+        $newtestimonial->client_id=$client;
+        $newtestimonial->text=$request->text;
+        if ($newtestimonial->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
     }
 
     /**
@@ -44,9 +57,9 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function show(Testimonial $testimonial)
+    public function show(Tes $testimonial)
     {
-        //
+        // return view('testimonial-create', compact(''));
     }
 
     /**
@@ -57,7 +70,7 @@ class TestimonialController extends Controller
      */
     public function edit(Testimonial $testimonial)
     {
-        //
+        return view('testimonial.testimonial-edit', compact($testimonial));
     }
 
     /**
@@ -69,7 +82,18 @@ class TestimonialController extends Controller
      */
     public function update(Request $request, Testimonial $testimonial)
     {
-        //
+        $testimonial->text=$request->text;
+        if ($testimonial->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
     }
 
     /**
@@ -81,5 +105,9 @@ class TestimonialController extends Controller
     public function destroy(Testimonial $testimonial)
     {
         //
+    }
+
+    public function maketestimonial($client){
+        return view('testimonial.testimonial-create', compact('client'));
     }
 }
