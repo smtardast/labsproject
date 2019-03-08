@@ -6,14 +6,14 @@
     <h1>Clients</h1>
 @stop
 @section('content')
-@can('admin')
+{{-- @can('admin') --}}
+{{-- {{dd($testimonial}} --}}
     
-<form action="{{route('client.store')}}" method="post" enctype="multipart/form-data">
-
+<form action="{{route('testimonial.update', ['testimonial'=>$testimonial->id])}}" method="post" enctype="multipart/form-data">
+@method('PUT')
     @csrf
     
-   
-
+  
     <div class="form-group">
       <label for="">Client comment</label>
        @if ($errors->has('text'))
@@ -21,7 +21,7 @@
     <p class="text-danger">{{$errors->first('text')}}</p>
       @endforeach
     @endif
-      <textarea class="form-control" name="text" id="" rows="3"></textarea>
+    <textarea class="form-control" name="text" id="" rows="3">{{old('text', $testimonial->text)}}</textarea>
     </div>
 
    
@@ -29,6 +29,6 @@
     <button type="submit">Submit</button>
 
 </form>
-@endcan
+{{-- @endcan --}}
 
 @stop

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Testimonial;
 use Illuminate\Http\Request;
+use App\Client;
+use App\Http\Requests\TestimonialStore;
+use App\Http\Requests\TestimonialUpdate;
+
 
 class TestimonialController extends Controller
 {
@@ -33,22 +37,24 @@ class TestimonialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $client)
-    {    dd('hi');
-        $newtestimonial= new Testimonial;
-        $newtestimonial->client_id=$client;
-        $newtestimonial->text=$request->text;
-        if ($newtestimonial->save()) {
+    public function store( $request, $client)
+    {    
+//         $newtestimonial= new Testimonial;
+// dd($client=Client::find($client)->get());
+//         $newtestimonial->client_id=$client->id;
+//         $newtestimonial->text=$request->text;
+//         // dd($newtestimonial);
+//         if ($newtestimonial->save()) {
         
-            return redirect()->back()->with([
-                'message' => 'success',
-                'textmessage' => 'You were successful!'
-            ]);
-        }
-        return redirect()->back()->with([
-            'message' => 'danger',
-            'textmessage' => "There's a problem..."
-        ]);
+//             return redirect()->back()->with([
+//                 'message' => 'success',
+//                 'textmessage' => 'You were successful!'
+//             ]);
+//         }
+//         return redirect()->back()->with([
+//             'message' => 'danger',
+//             'textmessage' => "There's a problem..."
+//         ]);
     }
 
     /**
@@ -57,7 +63,7 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function show(Tes $testimonial)
+    public function show(Testimonial $testimonial)
     {
         // return view('testimonial-create', compact(''));
     }
@@ -70,7 +76,9 @@ class TestimonialController extends Controller
      */
     public function edit(Testimonial $testimonial)
     {
-        return view('testimonial.testimonial-edit', compact($testimonial));
+        // dd($testimonial);
+
+        return view('testimonial.testimonial-edit', compact('testimonial'));
     }
 
     /**
@@ -80,8 +88,9 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testimonial $testimonial)
+    public function update(TestimonialUpdate $request, Testimonial $testimonial)
     {
+        // dd('hi');
         $testimonial->text=$request->text;
         if ($testimonial->save()) {
         
@@ -104,10 +113,45 @@ class TestimonialController extends Controller
      */
     public function destroy(Testimonial $testimonial)
     {
-        //
+        
+        if ($testimonial->delete()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
     }
 
-    public function maketestimonial($client){
+    public function maketestimonial(Client $client){
+
+        // $client=Client::find($client);
+        // dd($client);
         return view('testimonial.testimonial-create', compact('client'));
+    }
+
+    public function storetestimonial(TestimonialStore $request, $client)
+    {   
+        //  dd($client);
+        $newtestimonial= new Testimonial;
+// dd($client=Client::find($client)->get());
+        $newtestimonial->client_id=$client;
+        $newtestimonial->text=$request->text;
+        // dd($newtestimonial);
+        if ($newtestimonial->save()) {
+        
+            return redirect()->back()->with([
+                'message' => 'success',
+                'textmessage' => 'You were successful!'
+            ]);
+        }
+        return redirect()->back()->with([
+            'message' => 'danger',
+            'textmessage' => "There's a problem..."
+        ]);
     }
 }

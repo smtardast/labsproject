@@ -21,11 +21,11 @@ class BlogpageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $categories=Category::all();
+    {   $categories=Category::has('article')->get();
         $instagrams=Instagram::all();
         $blogpages=Article::validated()->paginate(3);
         $quotes=Blogpage::all()->first();
-        $tags=Tag::all();
+        $tags=Tag::has('articles')->get();
 
         return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
@@ -61,11 +61,12 @@ class BlogpageController extends Controller
 
     {   
         
-        $categories=Category::all();
+      $categories=Category::has('article')->validated()->get();
         $instagrams=Instagram::all();
         $comments= Comment::validated()->where('article_id', $blogpage->id)->get();
         $count= Comment::validated()->where('article_id', $blogpage->id)->get()->count();
-        $tags=Tag::all();
+        $tags=Tag::has('articles')->validated()->get();
+        
         $quotes=Blogpage::all()->first();
 
         return view('pages.blogpost', compact('blogpage', 'categories', 'instagrams', 'comments', 'count', 'tags', 'quotes'));
@@ -112,38 +113,44 @@ class BlogpageController extends Controller
 
     public function categoryFilter(Category $blogpage){
         
-        $blogpages = $blogpage->article->paginate(3);
+        $blogpages = $blogpage->article;
         // dd($blogpage->article);
         // $blogpages = Article::where('category_id', $blogpage);
+     $categories=Category::has('article')->validated()->get();
         $categories=Category::all();
         $instagrams=Instagram::all();
-        $tags=Tag::all();
+        $tags=Tag::has('articles')->validated()->get();
+        
         $quotes=Blogpage::all()->first();
 
-        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
+        return view('pages.blogcategory', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 
     public function tagFilter(Tag $blogpage){
-        $blogpages = $blogpage->articles->paginate(3);
+        $blogpages = $blogpage->articles;
         // dd($blogpage->article);
         // $blogpages = Article::where('category_id', $blogpage);
-        $categories=Category::all();
+     $categories=Category::has('article')->validated()->get();
+        
         $instagrams=Instagram::all();
-        $tags=Tag::all();
+        $tags=Tag::has('articles')->validated()->get();
+        
         $quotes=Blogpage::all()->first();
 
-        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
+        return view('pages.blogtag', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 
     public function search(Request $request){
         $keyword=$request->input('inputsearcher');
         //dd(Article::validated()->where('title', 'LIKE', '%'.$keyword.'%')->get());
-        $blogpages=Article::validated()->searchblog($keyword)->paginate(3);
-        $categories=Category::all();
+        $blogpages=Article::validated()->searchblog($keyword);
+     $categories=Category::has('article')->validated()->get();
+     
         $instagrams=Instagram::all();
-        $tags=Tag::all();
+        $tags=Tag::has('articles')->validated()->get();
+       
         $quotes=Blogpage::all()->first();
 
-        return view('pages.blog', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
+        return view('pages.blogsearch', compact('blogpages', 'categories', 'instagrams', 'tags', 'quotes'));
     }
 }

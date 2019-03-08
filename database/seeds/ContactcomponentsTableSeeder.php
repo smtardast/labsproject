@@ -18,11 +18,9 @@ class ContactcomponentsTableSeeder extends Seeder
             'office'=>'Main Office',
             'address'=>'
             C/ Libertad, 34 
-            05200 Arévalo
-            
-            0034 37483 2445 322
-            
-            hello@company.com',
+            05200 Arévalo',
+            'phone'=>'0034 37483 2445 322',
+            'email'=>'hello@company.com',
 
         ]);
     }

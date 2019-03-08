@@ -114,7 +114,7 @@
 							</div>
 							<div class="card-text">
 								<h2>{{$item->title}}</h2>
-								<p>{{$item->text}}</p>
+								<p style="height:110px">{{$item->text}}</p>
 							</div>
 						</div>
 					</div>

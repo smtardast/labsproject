@@ -27,7 +27,7 @@ class ClientUpdate extends FormRequest
             'name'=>'required|min:4|max:70',
             'image'=>'required|image',
             'job'=>'required|min:4|max:100',
-            'text'=>'required|min:4|max:300',
+            
         ];
     }
 }

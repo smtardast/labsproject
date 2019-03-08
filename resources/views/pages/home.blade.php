@@ -60,7 +60,7 @@
 							<i class="{{$item->icon->code}}"></i>
 							</div>
 							<h2>{{$item->title}}</h2>
-							<p>{{$item->testimonials->text}}</p>
+							<p style="height:110px">{{$item->text}}</p>
 						</div>
 					</div>
 					@endforeach
@@ -115,19 +115,19 @@
 						<h2>{{$contentsH->clienttitle}}</h2>
 					</div>
 					<div class="owl-carousel" id="testimonial-slide">
-						@foreach ($clients as $item)
+						@foreach ($testimonials as $testimonial)
 							
 						<!-- single testimonial -->
 						<div class="testimonial">
 							<span>‘​‌‘​‌</span>
-						<p>{{$item->text}}</p>
+						<p>{{$testimonial->text}}</p>
 							<div class="client-info">
 								<div class="avatar">
-									<img src="{{Storage::disk('client')->url($item->image)}}" alt="">
+									<img src="{{Storage::disk('client')->url($testimonial->client->image)}}" alt="">
 								</div>
 								<div class="client-name">
-									<h2>{{$item->name}}</h2>
-									<p>{{$item->job}}</p>
+									<h2>{{$testimonial->client->name}}</h2>
+									<p>{{$testimonial->client->job}}</p>
 								</div>
 							</div>
 						</div>
@@ -151,16 +151,41 @@
 			<div class="section-title">
 				<h2>{{$contentsH->teamtitle}}</h2>
 			</div>
+			
 			<div class="row">
-				@foreach ($teams as $item)
+				@foreach ($team1 as $tea1)
 					
 				<!-- single member -->
 				<div class="col-sm-4">
 					<div class="member">
-						{{-- {{dd(Storage::disk('profile')->url($item->profile->image))}} --}}
-						<img src="{{Storage::disk('profile')->url($item->profile->image)}}" alt="">
-					<h2>{{$item->name}}</h2>
-						<h3>{{$item->profile->job}}</h3>
+						
+						<img src="{{Storage::disk('profile')->url($tea1->profile->image)}}" alt="">
+					<h2>{{$tea1->name}}</h2>
+						<h3>{{$tea1->profile->job}}</h3>
+					</div>
+				</div>
+				@endforeach
+				@foreach ($team2 as $tea2)
+					
+				<!-- single member -->
+				<div class="col-sm-4">
+					<div class="member">
+						
+						<img src="{{Storage::disk('profile')->url($tea2->profile->image)}}" alt="">
+					<h2>{{$tea2->name}}</h2>
+						<h3>{{$tea2->profile->job}}</h3>
+					</div>
+				</div>
+				@endforeach
+				@foreach ($team3 as $tea3)
+					
+				<!-- single member -->
+				<div class="col-sm-4">
+					<div class="member">
+						
+						<img src="{{Storage::disk('profile')->url($tea3->profile->image)}}" alt="">
+					<h2>{{$tea3->name}}</h2>
+						<h3>{{$tea3->profile->job}}</h3>
 					</div>
 				</div>
 				@endforeach

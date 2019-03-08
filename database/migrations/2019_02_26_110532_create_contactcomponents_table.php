@@ -17,9 +17,10 @@ class CreateContactcomponentsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
-            $table->text('address');
             $table->string('office');
-
+            $table->text('address');
+            $table->string('phone');
+            $table->string('email');
             $table->timestamps();
         });
     }

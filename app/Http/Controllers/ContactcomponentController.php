@@ -76,6 +76,9 @@ class ContactcomponentController extends Controller
        $contactcomponent->description=$request->description; 
        $contactcomponent->address=$request->address; 
        $contactcomponent->office=$request->office; 
+       $contactcomponent->phone=$request->phone; 
+       $contactcomponent->email=$request->email; 
+
        $contactcomponent->save(); 
         return redirect()->back();
     }

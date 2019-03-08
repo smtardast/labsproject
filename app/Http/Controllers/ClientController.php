@@ -8,6 +8,7 @@ use App\Http\Requests\ClientStore;
 use App\Http\Requests\ClientUpdate;
 use Image;
 use Storage;
+use App\Testimonial;
 
 class ClientController extends Controller
 {
@@ -17,10 +18,11 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $clients=Client::all();
+        // $testimonials=Testimonial::where('client_id', 'LIKE', '%'.$client->id.'%')->get();
         return view('clients.clients
-        ', compact('clients'));
+        ', compact('clients', 'testimonials'));
     }
 
     /**
@@ -99,8 +101,10 @@ class ClientController extends Controller
     {
         $client->name=$request->name;
         $client->job=$request->job;
-      
         $client->image=$request->image->store('','client');
+        $path=Storage::disk('client')->path($client->image);
+        $img=Image::make($path)->resize(360, 448);
+        $img->save(); 
         if ($client->save()) {
         
             return redirect()->back()->with([

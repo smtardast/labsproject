@@ -48,12 +48,12 @@
 
         <div class="form-group">
             <label for="">Icon</label>
-            <select class="form-control" name="icon_id" id="">
+           
               @foreach ($icons as $item)
-              <input type="radio" value="{{$item->id}}"><i class="{{$item->code}} fa-3x"></i>
+              <input name="icon_id" type="radio" value="{{$item->id}}"><i class="{{$item->code}} fa-3x"></i>
             
               @endforeach
-            </select>
+           
             </div>
 
             <button type="submit">Submit</button>

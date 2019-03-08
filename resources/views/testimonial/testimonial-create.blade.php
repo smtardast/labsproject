@@ -8,11 +8,11 @@
 @section('content')
 {{-- @can('admin') --}}
     
-<form action="{{route('client.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('storetestimonial', ['client'=>$client->id] )}}" method="post" enctype="multipart/form-data">
 
     @csrf
     
-   
+    {{-- {{dd($client->id)}} --}}
 
     <div class="form-group">
       <label for="">Client comment</label>

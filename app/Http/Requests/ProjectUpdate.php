@@ -26,7 +26,7 @@ class ProjectUpdate extends FormRequest
         return [
             'image'=>'required|image',
             'title'=>'required|min:4|max:70',
-            'text'=>'required|min:4|max:300',
+            'text'=>'required|min:50|max:300',
             'icon_id'=>'required',
         ];
     }

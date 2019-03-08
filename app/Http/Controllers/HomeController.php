@@ -14,6 +14,7 @@ use App\Client;
 use App\Carousel;
 use App\Comment;
 use App\Article;
+use App\Testimonial;
 
 
 class HomeController extends Controller
@@ -35,8 +36,14 @@ class HomeController extends Controller
      */
     public function index()
     {  
-        $teams = User::team()->InRandomOrder()->take(3)->get();
-        $clients=Client::paginate(3);
+        $team1 = User::team()->InRandomOrder()->take(1)->get();
+        // get admin
+        $team2 = User::where('role_id', 1)->get();
+        $team3 = User::team()->InRandomOrder()->take(1)->get();
+        // if($team1 == $team3){
+        //  return $this->index();
+        // }
+        $testimonials=Testimonial::InRandomOrder()->get();
         $services = Service::InRandomOrder()->paginate(9);
         
         $contents = Servicepage::all()->first();
@@ -44,7 +51,7 @@ class HomeController extends Controller
         $contentsH= Homepage::all()->first();
         $contentsC= Contactcomponent::all()->first();
         $carousels=Carousel::all();
-        return view('pages.home', compact('contents','contentsH','contentsC', 'services', 'projects', 'teams', 'clients', 'carousels'));
+        return view('pages.home', compact('contents','contentsH','contentsC', 'services', 'projects', 'team1', 'team2','team3','testimonials', 'carousels'));
     }
 
     public function backend(){

@@ -16,23 +16,29 @@
         <img src="{{Storage::disk('client')->url($client->image)}}" alt="">
         <h3>{{$client->name}}</h3>
         <h4>{{$client->job}}</h4>
+        
 <a name="" id="" class="btn btn-primary" href="{{route('maketestimonial', ['client'=>$client->id])}}" role="button">Create a testimonial</a>
-{{-- @foreach ($client->testimonials as $testimonial)
-<div class="card" style="width: 18rem;">
-       
-        <div class="card-body">
-          <h5 class="card-title">Testimonial</h5>
-          <p class="card-text">{{$testimonial->text}}</p>
-          <a name="" id="" class="btn btn-primary" href="#" role="button">Edit testimonial</a>
-          <form action="{{route('testimonial.destroy', ['testimonial'=>$testimonial->id])}}" method="POST">
-                @method('DELETE')
-                @csrf
-                
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </div>
-      </div>
-@endforeach --}}
+{{-- {{dd($client->testimonials->where('client_id', $client->id))}} --}}
+<div class="row">
+
+    @foreach ($client->testimonials->where('client_id', $client->id) as $testimonial)
+    <div class="card" style="width: 18rem;">
+           
+            <div class="card-body">
+              <h5 class="card-title">Testimonial</h5>
+              <p class="card-text">{{$testimonial->text}}</p>
+              {{-- {{dd($testimonial->id)}} --}}
+            <a name="" id="" class="btn btn-primary" href="{{route('testimonial.edit', ['testimonial'=>$testimonial->id])}}" role="button">Edit testimonial</a>
+              <form action="{{route('testimonial.destroy', ['testimonial'=>$testimonial->id])}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+          </div>
+    @endforeach
+</div>
 
         <a name="" id="" class="btn btn-primary" href="{{route('client.edit', ['client'=>$client->id])}}" role="button">Edit</a>
         <form action="{{route('client.destroy', ['client'=>$client->id])}}" method="POST">

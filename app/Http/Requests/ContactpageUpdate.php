@@ -28,6 +28,9 @@ class ContactpageUpdate extends FormRequest
             'description'=>'required|min:4|max:300',
             'address'=>'required|min:4|max:300',
             'office'=>'required|min:4|max:100',
+            'phone'=>'required|min:4|max:20|numeric',
+            'email'=>'required|min:4|max:100|email',
+
             
         ];
     }

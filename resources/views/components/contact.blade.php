@@ -8,9 +8,19 @@
 						<h2>{{$contentsC->title}}</h2>
 					</div>
 					<p>{{$contentsC->description}} </p>
-					<h3 class="mt60">{{$contentsC->office}}</h3>
-					<br>
-					<p class="con-item">{{$contentsC->address}}</p>
+					<h3 class="mt60">
+						{{$contentsC->office}}
+					</h3>
+					<p class="con-item">
+						{{$contentsC->address}}
+					</p>
+					<p class="con-item">
+						{{$contentsC->phone}}
+					</p>
+					<p class="con-item">
+						{{$contentsC->email}}
+					</p>
+					
 				</div>
 				<!-- contact form -->
 				<div class="col-md-6 col-pull">
