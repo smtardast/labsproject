@@ -54,6 +54,16 @@
             <textarea class="form-control" name="address" id="" rows="3">{{old('address',$contactcomponent->address)}}</textarea>
           </div>
 
+          <div class="form-group">
+              <label for="">Phone number</label>
+               @if ($errors->has('phone'))
+          @foreach ($errors->get('phone') as $error)
+        <p class="text-danger">{{$errors->first('phone')}}</p>
+          @endforeach
+        @endif
+              <input type="text"
+                class="form-control" name="phone" id="" aria-describedby="helpId" placeholder="" value="{{old('phone',$contactcomponent->phone)}}">
+            </div>
 
           <button type="submit">Submit</button>
     </form>

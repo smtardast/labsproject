@@ -40,9 +40,13 @@ class HomeController extends Controller
         // get admin
         $team2 = User::where('role_id', 1)->get();
         $team3 = User::team()->InRandomOrder()->take(1)->get();
-        // if($team1 == $team3){
-        //  return $this->index();
-        // }
+    //    dd(User::team()->count());
+       if(User::team()->count() > 2){
+
+           if($team1 == $team3){
+            return $this->index();
+           }
+       }
         $testimonials=Testimonial::InRandomOrder()->get();
         $services = Service::InRandomOrder()->paginate(9);
         

@@ -8,7 +8,7 @@
 			<div class="row">
 				@foreach ($services as $item)
 					
-				<div class="col-md-4 col-sm-6">
+				<div class="col-md-4 col-sm-6" style="height:270px">
 					<div class="service">
 						<div class="icon">
 						<i class="{{$item->icon->code}}"></i>
@@ -21,13 +21,14 @@
 				</div>
 				@endforeach
 				
-				<div class="page-pagination">
-						{{$services->links()}}
-					</div>
+				
 				
 				
 			</div>
 			<div class="text-center">
+					<div class="page-pagination">
+							{{$services->links()}}
+						</div>
 				<a href="{{route('servicepage.index')}}" class="site-btn">Browse</a>
 			</div>
 		</div>

@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserStore;
 use App\Http\Requests\UserUpdate;
 use App\Article;
+use Storage;
+use Image;
+
 
 class UserController extends Controller
 {
@@ -53,6 +56,9 @@ class UserController extends Controller
         $newprofile->user_id=$newuser->id;
         $newprofile->job=$request->job;
         $newprofile->image=$request->image->store('','profile');
+        $path=Storage::disk('profile')->path($newprofile->image);
+        $img=Image::make($path)->resize(200, 260);
+        $img->save(); 
         if ($newprofile->save()) {
         
             return redirect()->back()->with([

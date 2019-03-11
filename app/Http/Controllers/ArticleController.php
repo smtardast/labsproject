@@ -62,9 +62,10 @@ class ArticleController extends Controller
         $path=Storage::disk('article')->path($newarticle->image);
         $img=Image::make($path)->resize(750, 268);
         $img->save(); 
-        //$newarticle->tag=$request->tag;
+       
         if ($newarticle->save()) {
-        
+            $tag= Tag::find($request->tag_id);
+            $newarticle->tags()->attach($tag);
             return redirect()->back()->with([
                 'message' => 'success',
                 'textmessage' => 'You were successful!'
@@ -74,8 +75,6 @@ class ArticleController extends Controller
             'message' => 'danger',
             'textmessage' => "There's a problem..."
         ]);
-        $tag= Tag::find($request->tag_id);
-        $newarticle->tags()->attach($tag);
         $articles=Article::all();
         return view('article.article', compact('articles'));
 
@@ -122,9 +121,17 @@ class ArticleController extends Controller
         $article->text=$request->text;
         $article->authortext=$request->authortext;
         $article->category_id=$request->category_id;
-        $article->user_id=$request->user_id;
+        $path=Storage::disk('article')->path($article->image);
+        $img=Image::make($path)->resize(750, 268);
+        $img->save(); 
+        $article->user_id=Auth::User()->id;
+
         //$article->tag=$request->tag;
         if ($article->save()) {
+            $tag=Tag::all();
+            $article->tags()->detach($tag);
+            $tag= Tag::find($request->tag_id);
+            $article->tags()->attach($tag);
         
             return redirect()->back()->with([
                 'message' => 'success',
@@ -135,10 +142,6 @@ class ArticleController extends Controller
             'message' => 'danger',
             'textmessage' => "There's a problem..."
         ]);
-        $tag=Tag::all();
-        $article->tags()->detach($tag);
-        $tag= Tag::find($request->tag_id);
-        $article->tags()->attach($tag);
         $articles=Article::all();
         return view('article.article', compact('articles'));
 

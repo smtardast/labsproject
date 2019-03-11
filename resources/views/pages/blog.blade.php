@@ -63,7 +63,7 @@
                                         <a href="">{{$item->category->category}}</a>
                                         <a href="">{{count($item->comments->where('validated', true))}} Comments</a>
                                     </div>
-                                <p class="text-break" wrap="hard">{!! str_limit($item->text, 330) !!}</p>
+                                <p >{!! str_limit($item->text, 330) !!}</p>
                                 <a href="{{route('blogpage.show',['blogpage'=>$item->id])}}" class="read-more">Read More</a>
                                 </div>
                             </div>

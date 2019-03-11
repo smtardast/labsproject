@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
+use Storage;
+use Image;
 
 class ProfileController extends Controller
 {
@@ -71,6 +73,10 @@ class ProfileController extends Controller
     {
      $profile->job=$request->job;
      $profile->image=$request->image->store('','profile');
+     $path=Storage::disk('profile')->path($profile->image);
+     $img=Image::make($path)->resize(200, 260);
+     $img->save(); 
+
      if ($profile->save()) {
         
         return redirect()->back()->with([

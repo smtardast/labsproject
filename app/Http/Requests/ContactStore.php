@@ -25,7 +25,7 @@ class ContactStore extends FormRequest
     {
         return [
             'title'=>'required',
-            'name'=>'required',
+            'name'=>'required|min:3|max:60',
             'email'=>'required|email',
             'text'=>'required|min:4|max:300',
 

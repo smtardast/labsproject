@@ -25,7 +25,7 @@ class ServiceStore extends FormRequest
     {
         return [
             'title'=>'required|min:4|max:70',
-            'text'=>'required|min:4|max:300',
+            'text'=>'required|min:4|max:200',
             'icon_id'=>'required',
         ];
     }

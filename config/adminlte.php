@@ -199,9 +199,15 @@ return [
 
         'CLIENTS',
         [
-            'text'=>'CLIENTS',
+            'text'=>'ALL CLIENTS',
             'url'=>'client',
         ],
+        [
+            'text'=>'CREATE A CLIENT',
+            'url'=>'client/create',
+        ],
+        
+
        
     ],
 

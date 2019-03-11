@@ -21,7 +21,7 @@
             
               
               <i class="{{$item->icon->code}} fa-3x"></i>
-              <p>{{$item->icon_id}}</p>
+             
               <h2>{{$item->title}}</h2>
               <p>{{$item->text}}</p>
               

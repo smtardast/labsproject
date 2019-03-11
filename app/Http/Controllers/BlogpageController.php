@@ -116,10 +116,10 @@ class BlogpageController extends Controller
         $blogpages = $blogpage->article;
         // dd($blogpage->article);
         // $blogpages = Article::where('category_id', $blogpage);
-     $categories=Category::has('article')->validated()->get();
+     $categories=Category::has('article')->get();
         $categories=Category::all();
         $instagrams=Instagram::all();
-        $tags=Tag::has('articles')->validated()->get();
+        $tags=Tag::has('articles')->get();
         
         $quotes=Blogpage::all()->first();
 
@@ -130,10 +130,10 @@ class BlogpageController extends Controller
         $blogpages = $blogpage->articles;
         // dd($blogpage->article);
         // $blogpages = Article::where('category_id', $blogpage);
-     $categories=Category::has('article')->validated()->get();
+     $categories=Category::has('article')->get();
         
         $instagrams=Instagram::all();
-        $tags=Tag::has('articles')->validated()->get();
+        $tags=Tag::has('articles')->get();
         
         $quotes=Blogpage::all()->first();
 

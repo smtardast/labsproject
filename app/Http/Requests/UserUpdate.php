@@ -24,7 +24,7 @@ class UserUpdate extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|min:4|max:70',
+            'name'=>'required|min:3|max:60',
             'email'=>'required|email',
             'password'=>'required|min:4|max:70',
             'role_id'=>'required',

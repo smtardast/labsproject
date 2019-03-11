@@ -24,7 +24,7 @@ class CategoryStore extends FormRequest
     public function rules()
     {
         return [
-            'category'=>'required'
+            'category'=>'required|alpha'
         ];
     }
 }

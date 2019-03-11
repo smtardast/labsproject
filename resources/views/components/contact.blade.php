@@ -57,6 +57,7 @@
 							  <p class="text-danger">{{$errors->first('text')}}</p>
 									@endforeach
 								@endif
+								
 								<textarea name="text" placeholder="Message" class="{{$errors->has('text')?'border-danger':''}}"></textarea>
 								<button class="site-btn">send</button>
 							</div>

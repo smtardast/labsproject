@@ -24,7 +24,7 @@ class TagStore extends FormRequest
     public function rules()
     {
         return [
-            'tag'=>'required|min:2|max:20'
+            'tag'=>'required|min:2|max:20|alpha'
         ];
     }
 }

@@ -26,13 +26,13 @@ class HomepageUpdate extends FormRequest
         return [
             'subtitle'=>'required|min:4|max:70',
             'descriptiontitle'=>'required|min:4|max:70',
-            'description'=>'required|min:4|max:300',
-            'description2'=>'required|min:4|max:300',
+            'description'=>'required|min:200|max:400',
+            'description2'=>'required|min:200|max:400',
             'clienttitle'=>'required|min:4|max:70',
             'servicetitle'=>'required|min:4|max:70',
             'teamtitle'=>'required|min:4|max:70',
             'browsetitle'=>'required|min:4|max:70',
-            'browsesubtitle'=>'required|min:4|max:300',
+            'browsesubtitle'=>'required|min:4|max:400',
             'video'=>'required|min:4|max:200',
             
 

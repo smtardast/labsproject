@@ -23,7 +23,8 @@
 </thead>
 <tbody>
         @foreach ($users as $item)
-        <th>{{$item->id}}</th>
+        <tr>
+            <th>{{$item->id}}</th>
         <td>{{$item->name}}</td>
         <td>{{$item->email}}</td>
         <td>{{$item->role->role}}</td>
@@ -50,6 +51,7 @@
                 
 
         </td>
+        </tr>
         @endforeach
 </tbody>
 </table>
